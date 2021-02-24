@@ -116,7 +116,7 @@ export class MyScene extends CGFscene {
       1.0,
       0.0,
       Math.sqrt(8.0)*(0.5/4),
-      Math.sqrt(3.5*3.5/2) + 3*Math.sqrt(2.0)/4,
+      Math.sqrt(3.5*3.5/2) + 1,
       0.0,
       1.0
     ];
