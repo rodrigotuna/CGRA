@@ -62,12 +62,56 @@ export class MyScene extends CGFscene {
       vec3.fromValues(0, 0, 0)
     );
   }
+  
+  setBlueAppearance() {
+    this.setAmbient(0.2, 0.7, 0.9, 1.0);
+    this.setDiffuse(0.2, 0.7, 0.9, 1.0);
+    this.setSpecular(0.2, 0.7, 0.9, 1.0);
+    this.setShininess(10.0);
+  }
+  setRedAppearance() {
+    this.setAmbient(0.8, 0.0, 0.0, 1.0);
+    this.setDiffuse(0.8, 0.0, 0.0, 1.0);
+    this.setSpecular(0.8, 0.0, 0.0, 1.0);
+    this.setShininess(10.0);
+  }
+  setGreenAppearance() {
+    this.setAmbient(0.0, 0.8, 0.0, 1.0);
+    this.setDiffuse(0.0, 0.8, 0.0, 1.0);
+    this.setSpecular(0.0, 0.8, 0.0, 1.0);
+    this.setShininess(10.0);
+  }
+  setYellowAppearance() {
+    this.setAmbient(0.9, 0.8, 0.0, 1.0);
+    this.setDiffuse(0.9, 0.8, 0.0, 1.0);
+    this.setSpecular(0.9, 0.8, 0.0, 1.0);
+    this.setShininess(10.0);
+  }
+  setPinkAppearance() {
+    this.setAmbient(0.8, 0.3, 0.4, 1.0);
+    this.setDiffuse(0.8, 0.3, 0.4, 1.0);
+    this.setSpecular(0.8, 0.3, 0.4, 1.0);
+    this.setShininess(10.0);
+  }
+  setPurpleAppearance() {
+    this.setAmbient(0.5, 0.0, 0.5, 1.0);
+    this.setDiffuse(0.5, 0.0, 0.5, 1.0);
+    this.setSpecular(0.5, 0.0, 0.5, 1.0);
+    this.setShininess(10.0);
+  }
+  setOrangeAppearance() {
+    this.setAmbient(0.9, 0.4, 0.0, 1.0);
+    this.setDiffuse(0.9, 0.4, 0.0, 1.0);
+    this.setSpecular(0.9, 0.4, 0.0, 1.0);
+    this.setShininess(10.0);
+  }
   setDefaultAppearance() {
     this.setAmbient(0.2, 0.4, 0.8, 1.0);
     this.setDiffuse(0.2, 0.4, 0.8, 1.0);
     this.setSpecular(0.2, 0.4, 0.8, 1.0);
     this.setShininess(10.0);
   }
+
   display() {
     // ---- BEGIN Background, camera and axis setup
     // Clear image and depth buffer everytime we update the scene
