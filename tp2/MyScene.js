@@ -119,7 +119,7 @@ export class MyScene extends CGFscene {
       Math.sqrt(3.5*3.5/2) + 3*Math.sqrt(2.0)/4,
       0.0,
       1.0
-    ]
+    ];
 
     this.pushMatrix();
     this.multMatrix(trans);
@@ -128,10 +128,41 @@ export class MyScene extends CGFscene {
 
     this.pushMatrix();
     this.translate(Math.sqrt(2.0),Math.sqrt(2.0),0.0);
-    this.rotate(-Math.PI/4*5,0,0,1);
+    this.rotate(-Math.PI/4*5,0.0,0.0,1.0);
     this.triangleBig.display();
     this.popMatrix();
 
+    this.pushMatrix();
+    this.translate(0.0,Math.sqrt(2.0)-0.8,0.0);
+    this.rotate(Math.PI/2,0.0,0.0,1.0);
+    this.triangleBig.display();
+    this.popMatrix();
+
+    this.pushMatrix();
+    this.translate(-Math.sqrt(2.0),0.0,0.0);
+    this.rotate(-3*Math.PI/4,0.0,0.0,1.0);
+    this.triangle.display();
+    this.popMatrix();
+
+    this.pushMatrix();
+    this.translate(-2*Math.sqrt(2.0),-Math.sqrt(2.0),0.0);
+    this.rotate(Math.PI/4,0.0,0.0,1.0);
+    this.triangleSmall.display();
+    this.popMatrix();
+
+    this.pushMatrix();
+    this.scale(-1,1,1);
+    this.rotate(Math.PI/4,0.0,0.0,1.0);
+    this.translate(-3,-1,0);
+    this.parallegram.display();
+    this.popMatrix();
+
+    this.pushMatrix();
+    this.translate(Math.sqrt(Math.sqrt(2.0) + 1.0),-2*Math.sqrt(2.0)-0.15,0.0);
+    this.rotate(3*Math.PI/4,0.0,0.0,1.0);
+    this.triangleSmall.display();
+    this.popMatrix();
+    
     // ---- BEGIN Primitive drawing section
 
     /*if(this.displayDiamond) this.diamond.display();
