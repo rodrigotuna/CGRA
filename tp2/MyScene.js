@@ -119,7 +119,7 @@ export class MyScene extends CGFscene {
       Math.sqrt(3.5*3.5/2) + 3*Math.sqrt(2.0)/4,
       0.0,
       1.0
-    ]
+    ];
 
     this.pushMatrix();
     this.multMatrix(trans);
