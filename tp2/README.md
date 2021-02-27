@@ -1,10 +1,8 @@
 # CGRA 2020/2021
 
-## Group T0xG0y
+## Group T0xG02
 
 ## TP 2 Notes
 
-(add your main observations/remarks about your experiments here, in a bulleted list, and remove this line. Some examples below)
-
-- In exercise 1 we observed X
-- In exercise 2 we had difficulties in Y
+- In exercise 1 we observed how to make a tangram using different transformations to place the objects according to the image provided. We had some difficulties getting used to the operations, but they were overcome with practice and trial and error.
+- In exercises 2 and 3 we made a unit cube in two different ways: with and without using transformations. We kept on getting acquainted with the transformations and their implementations.
