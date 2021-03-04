@@ -18,7 +18,7 @@ export class MyTangram extends CGFobject {
 	init() {
         this.diamond = new MyDiamond(this.scene);
         this.triangle = new MyTriangle(this.scene);
-        this.parallegram = new MyParallelogram(this.scene);
+        this.parallelogram = new MyParallelogram(this.scene);
         this.triangleSmall = new MyTriangleSmall(this.scene);
         this.triangleBig = new MyTriangleBig(this.scene);
 	}
@@ -75,13 +75,29 @@ export class MyTangram extends CGFobject {
           this.scene.scale(-1,1,1);
           this.scene.rotate(Math.PI/4,0.0,0.0,1.0);
           this.scene.translate(-3,-1,0);
-          this.parallegram.display();
+          this.parallelogram.display();
           this.scene.popMatrix();
       
           this.scene.pushMatrix();
-          this.scene.translate(Math.sqrt(Math.sqrt(2.0) + 1.0),-2*Math.sqrt(2.0)-0.15,0.0);
+          this.scene.translate(Math.sqrt(2.0),-2*Math.sqrt(2.0),0.0);
           this.scene.rotate(3*Math.PI/4,0.0,0.0,1.0);
           this.triangleSmall.display();
           this.scene.popMatrix();
+    }
+
+    enableNormalViz() {
+        this.diamond.enableNormalViz();
+        this.triangle.enableNormalViz();
+        this.parallelogram.enableNormalViz();
+        this.triangleSmall.enableNormalViz();
+        this.triangleBig.enableNormalViz();
+    }
+
+    disableNormalViz() {
+        this.diamond.disableNormalViz();
+        this.triangle.disableNormalViz();
+        this.parallelogram.disableNormalViz();
+        this.triangleSmall.disableNormalViz();
+        this.triangleBig.disableNormalViz();
     }
 }
