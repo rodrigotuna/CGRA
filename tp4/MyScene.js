@@ -1,6 +1,7 @@
 import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture } from "../lib/CGF.js";
 import { MyQuad } from "./MyQuad.js";
-import { MyTangram} from "./MyTangram.js";
+import { MyTangram } from "./MyTangram.js";
+import { MyUnitCubeQuad } from "./MyUnitCubeQuad.js"
 
 /**
  * MyScene
@@ -25,11 +26,6 @@ export class MyScene extends CGFscene {
         this.gl.depthFunc(this.gl.LEQUAL);
         this.enableTextures(true);
 
-        //Initialize scene objects
-        this.axis = new CGFaxis(this);
-        this.quad = new MyQuad(this);
-        this.tangram = new MyTangram(this);
-
         //------ Applied Material
         this.quadMaterial = new CGFappearance(this);
         this.quadMaterial.setAmbient(0.1, 0.1, 0.1, 1);
@@ -44,7 +40,21 @@ export class MyScene extends CGFscene {
         this.texture1 = new CGFtexture(this, 'images/board.jpg');
         this.texture2 = new CGFtexture(this, 'images/floor.png');
         this.texture3 = new CGFtexture(this, 'images/window.jpg');
+        this.cubeTopTexture = new CGFtexture(this, 'images/mineTop.png');
+        this.cubeBotTexture = new CGFtexture(this, 'images/mineBottom.png');
+        this.cubeSideTexture = new CGFtexture(this, 'images/mineSide.png');
         //-------
+
+        //Initialize scene objects
+        this.axis = new CGFaxis(this);
+        this.quad = new MyQuad(this);
+        this.tangram = new MyTangram(this);
+        this.unitCube = new MyUnitCubeQuad(this, [this.cubeTopTexture,
+                                                  this.cubeBotTexture,
+                                                  this.cubeSideTexture,
+                                                  this.cubeSideTexture,
+                                                  this.cubeSideTexture,
+                                                  this.cubeSideTexture]);
 
         //-------Objects connected to MyInterface
         this.displayAxis = true;
@@ -127,7 +137,8 @@ export class MyScene extends CGFscene {
         // this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.NEAREST);
 
         //this.quad.display();
-        this.tangram.display();
+        //this.tangram.display();
+        this.unitCube.display();
 
         // ---- END Primitive drawing section
     }
