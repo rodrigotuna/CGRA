@@ -54,6 +54,7 @@ export class MyInterface extends CGFinterface {
         }     
         return this.activeKeys[keyCode] || false;
     }
+    
 
 
 
