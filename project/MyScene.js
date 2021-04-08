@@ -31,21 +31,27 @@ export class MyScene extends CGFscene {
         //Textures
         this.cubeTopTexture = new CGFtexture(this, 'images/demo_cubemap/top.png');
         this.cubeBotTexture = new CGFtexture(this, 'images/demo_cubemap/bottom.png');
-        this.cubeFrontTexture = new CGFtexture(this, 'images/demo_cubemap/front.png');
+        this.cubeBackTexture = new CGFtexture(this, 'images/demo_cubemap/front.png');
         this.cubeLeftTexture = new CGFtexture(this, 'images/demo_cubemap/left.png');
-        this.cubeBackTexture = new CGFtexture(this, 'images/demo_cubemap/back.png');
+        this.cubeFrontTexture = new CGFtexture(this, 'images/demo_cubemap/back.png');
         this.cubeRightTexture = new CGFtexture(this, 'images/demo_cubemap/right.png');
+
+        this.mountainTexture = [this.cubeTopTexture, this.cubeBotTexture, this.cubeFrontTexture, this.cubeBackTexture, this.cubeRightTexture, this.cubeLeftTexture];
+
+        this.sunsetTopTexture = new CGFtexture(this, 'images/sunset/py.png');
+        this.sunsetBotTexture = new CGFtexture(this, 'images/sunset/ny.png');
+        this.sunsetBackTexture = new CGFtexture(this, 'images/sunset/nz.png');
+        this.sunsetLeftTexture = new CGFtexture(this, 'images/sunset/nx.png');
+        this.sunsetFrontTexture = new CGFtexture(this, 'images/sunset/pz.png');
+        this.sunsetRightTexture = new CGFtexture(this, 'images/sunset/px.png');
+
+        this.sunsetTexture = [this.sunsetTopTexture, this.sunsetBotTexture, this.sunsetFrontTexture, this.sunsetBackTexture, this.sunsetRightTexture, this.sunsetLeftTexture];
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.movingObject = new MyMovingObject(this,0, 0, [0,0,0]);
-        this.cubeMap = new MyCubeMap(this,[ this.cubeTopTexture, 
-                                            this.cubeBotTexture,
-                                            this.cubeBackTexture,
-                                            this.cubeFrontTexture,
-                                            this.cubeRightTexture,
-                                            this.cubeLeftTexture]);
+        this.cubeMap = new MyCubeMap(this);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -62,6 +68,7 @@ export class MyScene extends CGFscene {
 
         //Objects connected to MyInterface
         this.displayAxis = true;
+        this.displaySunset = false;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -151,6 +158,8 @@ export class MyScene extends CGFscene {
         //This sphere does not have defined texture coordinates
         //this.incompleteSphere.display();
         //this.movingObject.display();
+        this.cubeMap.textureList = (this.displaySunset) ? this.sunsetTexture : this.mountainTexture;
+
         this.cubeMap.display();
 
         // ---- END Primitive drawing section
