@@ -2,6 +2,7 @@ import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture } from "../lib/
 import { MySphere } from "./MySphere.js";
 import { MyMovingObject } from "./MyMovingObject.js";
 import { MyCubeMap } from "./MyCubeMap.js";
+import { MyCylinder } from "./MyCylinder.js";
 
 /**
 * MyScene
@@ -47,24 +48,29 @@ export class MyScene extends CGFscene {
 
         this.sunsetTexture = [this.sunsetTopTexture, this.sunsetBotTexture, this.sunsetFrontTexture, this.sunsetBackTexture, this.sunsetRightTexture, this.sunsetLeftTexture];
 
+        this.mapTexture = new CGFtexture(this, 'images/earth.jpg');
+
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.movingObject = new MyMovingObject(this,0, 0, [0,0,0]);
         this.cubeMap = new MyCubeMap(this);
+        this.cylinder = new MyCylinder(this,60);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
         this.defaultAppearance.setDiffuse(0.2, 0.4, 0.8, 1.0);
         this.defaultAppearance.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.defaultAppearance.setEmission(0,0,0,1);
-		this.defaultAppearance.setShininess(120);
+        this.defaultAppearance.setShininess(120);
+        
 
 		this.sphereAppearance = new CGFappearance(this);
 		this.sphereAppearance.setAmbient(0.3, 0.3, 0.3, 1);
 		this.sphereAppearance.setDiffuse(0.7, 0.7, 0.7, 1);
-		this.sphereAppearance.setSpecular(0.0, 0.0, 0.0, 1);
-		this.sphereAppearance.setShininess(120);
+        this.sphereAppearance.setSpecular(0.0, 0.0, 0.0, 1);
+        this.sphereAppearance.setShininess(120);
+        this.sphereAppearance.setTextureWrap('REPEAT', 'REPEAT')
 
         this.landscapeIDs = {'Mountains': 0 , 'Sunset': 1};
         //Objects connected to MyInterface
@@ -148,21 +154,21 @@ export class MyScene extends CGFscene {
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
         
-        
-        this.defaultAppearance.apply();
         // Draw axis
         if (this.displayAxis)
             this.axis.display();
 
+        this.sphereAppearance.setTexture(this.mapTexture);
         this.sphereAppearance.apply();
         // ---- BEGIN Primitive drawing section
 
         //This sphere does not have defined texture coordinates
         //this.incompleteSphere.display();
         //this.movingObject.display();
-        this.cubeMap.textureList = (this.selectedLandscape == 1) ? this.sunsetTexture : this.mountainTexture ;
+        //this.cubeMap.textureList = (this.selectedLandscape == 1) ? this.sunsetTexture : this.mountainTexture ;
 
-        this.cubeMap.display();
+        //this.cubeMap.display();
+        this.cylinder.display();
 
         // ---- END Primitive drawing section
     }
