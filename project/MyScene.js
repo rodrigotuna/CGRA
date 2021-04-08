@@ -66,9 +66,11 @@ export class MyScene extends CGFscene {
 		this.sphereAppearance.setSpecular(0.0, 0.0, 0.0, 1);
 		this.sphereAppearance.setShininess(120);
 
+        this.landscapeIDs = {'Mountains': 0 , 'Sunset': 1};
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displaySunset = false;
+        this.selectedLandscape = 0;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -158,7 +160,7 @@ export class MyScene extends CGFscene {
         //This sphere does not have defined texture coordinates
         //this.incompleteSphere.display();
         //this.movingObject.display();
-        this.cubeMap.textureList = (this.displaySunset) ? this.sunsetTexture : this.mountainTexture;
+        this.cubeMap.textureList = (this.selectedLandscape == 1) ? this.sunsetTexture : this.mountainTexture ;
 
         this.cubeMap.display();
 

@@ -20,7 +20,7 @@ export class MyInterface extends CGFinterface {
 
         //Checkbox element in GUI
         this.gui.add(this.scene, 'displayAxis').name('Display Axis');
-        this.gui.add(this.scene, 'displaySunset').name('Sunset');
+        this.gui.add(this.scene, 'selectedLandscape', this.scene.landscapeIDs).name('Landscapes');
 
         this.initKeys();
         return true;
