@@ -163,12 +163,12 @@ export class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
 
         //This sphere does not have defined texture coordinates
-        //this.incompleteSphere.display();
+        this.incompleteSphere.display();
         //this.movingObject.display();
         //this.cubeMap.textureList = (this.selectedLandscape == 1) ? this.sunsetTexture : this.mountainTexture ;
 
         //this.cubeMap.display();
-        this.cylinder.display();
+        //this.cylinder.display();
 
         // ---- END Primitive drawing section
     }

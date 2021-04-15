@@ -21,7 +21,7 @@ export class MyCylinder extends CGFobject {
         var alphaAng = 2*Math.PI/this.slices;
 
         var s = 0;
-        var sOffset = 1/this.slices;
+        var sInc = 1/this.slices;
 
         for(var i = 0; i <= this.slices; i++){
             this.vertices.push(Math.cos(ang), 0, -Math.sin(ang));
@@ -34,7 +34,7 @@ export class MyCylinder extends CGFobject {
                 this.indices.push(2*i, 2*i+1, 2*i-1);
                 this.indices.push(2*i, 2*i-1, 2*(i-1));
             }
-            s += sOffset;
+            s += sInc;
             ang+=alphaAng;
         }
 
