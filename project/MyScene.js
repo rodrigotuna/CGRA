@@ -73,9 +73,11 @@ export class MyScene extends CGFscene {
         this.sphereAppearance.setTextureWrap('REPEAT', 'REPEAT')
 
         this.landscapeIDs = {'Mountains': 0 , 'Sunset': 1};
+        
         //Objects connected to MyInterface
         this.displayAxis = true;
-        this.displaySunset = false;
+        this.scaleFactor = 1.0;
+        this.speedFactor = 1.0;
         this.selectedLandscape = 0;
     }
     initLights() {
@@ -104,25 +106,25 @@ export class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyW")) {
             text+=" W ";
             keysPressed=true;
-            this.movingObject.accelerate(1);
+            this.movingObject.accelerate(1*this.speedFactor);
         }
 
         if (this.gui.isKeyPressed("KeyS")){
             text+=" S ";
             keysPressed=true;
-            this.movingObject.accelerate(-1);
+            this.movingObject.accelerate(-1*this.speedFactor);
         }
 
         if (this.gui.isKeyPressed("KeyA")){
             text+=" A ";
             keysPressed=true;
-            this.movingObject.turn(Math.PI/12);
+            this.movingObject.turn(Math.PI/12*this.speedFactor);
         }
 
         if (this.gui.isKeyPressed("KeyD")){
             text+=" D ";
             keysPressed=true;
-            this.movingObject.turn(-Math.PI/12);
+            this.movingObject.turn(-Math.PI/12*this.speedFactor);
         }
 
         if (this.gui.isKeyPressed("KeyR")){
@@ -161,13 +163,11 @@ export class MyScene extends CGFscene {
         this.sphereAppearance.setTexture(this.mapTexture);
         this.sphereAppearance.apply();
         // ---- BEGIN Primitive drawing section
-
-        //This sphere does not have defined texture coordinates
-        this.incompleteSphere.display();
-        //this.movingObject.display();
-        //this.cubeMap.textureList = (this.selectedLandscape == 1) ? this.sunsetTexture : this.mountainTexture ;
-
-        //this.cubeMap.display();
+        this.movingObject.display();
+        
+        this.cubeMap.textureList = (this.selectedLandscape == 1) ? this.sunsetTexture : this.mountainTexture ;
+        this.cubeMap.display();
+        //this.incompleteSphere.display();
         //this.cylinder.display();
 
         // ---- END Primitive drawing section

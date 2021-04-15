@@ -52,9 +52,10 @@ export class MyMovingObject extends CGFobject {
 
         this.pyramidAppearance.apply();
         this.scene.pushMatrix();
-
+        
         this.scene.translate(this.position[0],this.position[1],this.position[2]);
         this.scene.rotate(this.angle, 0, 1, 0);
+        this.scene.scale(this.scene.scaleFactor,this.scene.scaleFactor,this.scene.scaleFactor);
 
         this.scene.pushMatrix();
         this.scene.translate(0,0,-1);
