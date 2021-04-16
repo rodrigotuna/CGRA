@@ -72,12 +72,14 @@ export class MyScene extends CGFscene {
         this.sphereAppearance.setShininess(120);
         this.sphereAppearance.setTextureWrap('REPEAT', 'REPEAT')
 
-        this.landscapeIDs = {'Mountains': 0 , 'Sunset': 1};
+        this.objectList = {'Moving Pyramid': 0, 'Cylinder': 1, 'Sphere': 2};
+        this.landscapeList = {'Mountains': 0 , 'Sunset': 1};
         
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.scaleFactor = 1.0;
         this.speedFactor = 1.0;
+        this.selectedObject = 0;
         this.selectedLandscape = 0;
     }
     initLights() {
@@ -142,7 +144,6 @@ export class MyScene extends CGFscene {
     update(t){
         this.checkKeys();
         this.movingObject.update();
-        //To be done...
     }
 
     display() {
@@ -163,11 +164,14 @@ export class MyScene extends CGFscene {
         this.sphereAppearance.setTexture(this.mapTexture);
         this.sphereAppearance.apply();
         // ---- BEGIN Primitive drawing section
-        this.movingObject.display();
+
+        if(this.selectedObject == 0) this.movingObject.display();
+        if(this.selectedObject == 1) this.cylinder.display();
+        if(this.selectedObject == 2) this.incompleteSphere.display();
         
         this.cubeMap.textureList = (this.selectedLandscape == 1) ? this.sunsetTexture : this.mountainTexture ;
         this.cubeMap.display();
-        //this.incompleteSphere.display();
+        
         //this.cylinder.display();
 
         // ---- END Primitive drawing section
