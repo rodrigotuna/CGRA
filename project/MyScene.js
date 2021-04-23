@@ -108,25 +108,25 @@ export class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyW")) {
             text+=" W ";
             keysPressed=true;
-            this.movingObject.accelerate(1*this.speedFactor);
+            this.movingObject.accelerate(1.0);
         }
 
         if (this.gui.isKeyPressed("KeyS")){
             text+=" S ";
             keysPressed=true;
-            this.movingObject.accelerate(-1*this.speedFactor);
+            this.movingObject.accelerate(-1.0);
         }
 
         if (this.gui.isKeyPressed("KeyA")){
             text+=" A ";
             keysPressed=true;
-            this.movingObject.turn(Math.PI/12*this.speedFactor);
+            this.movingObject.turn(Math.PI/24 * this.speedFactor);
         }
 
         if (this.gui.isKeyPressed("KeyD")){
             text+=" D ";
             keysPressed=true;
-            this.movingObject.turn(-Math.PI/12*this.speedFactor);
+            this.movingObject.turn(-Math.PI/24*this.speedFactor);
         }
 
         if (this.gui.isKeyPressed("KeyR")){
@@ -143,7 +143,7 @@ export class MyScene extends CGFscene {
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         this.checkKeys();
-        this.movingObject.update();
+        this.movingObject.update(t, this.speedFactor);
     }
 
     display() {
@@ -171,8 +171,6 @@ export class MyScene extends CGFscene {
         
         this.cubeMap.textureList = (this.selectedLandscape == 1) ? this.sunsetTexture : this.mountainTexture ;
         this.cubeMap.display();
-        
-        //this.cylinder.display();
 
         // ---- END Primitive drawing section
     }

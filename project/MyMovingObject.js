@@ -12,6 +12,7 @@ export class MyMovingObject extends CGFobject {
         this.angle = angle;
         this.velocity = velocity;
         this.position = position;
+        this.lastT = 0;
 	}
 	
 	init() {
@@ -20,9 +21,10 @@ export class MyMovingObject extends CGFobject {
         this.pyramid = new MyPyramid(this.scene, 4, 2);
 	}
 
-    update(){
-        this.position[0] += this.velocity * Math.sin(this.angle);
-        this.position[2] += this.velocity * Math.cos(this.angle);
+    update(t, speedFactor){
+        this.position[0] += this.velocity * Math.sin(this.angle) * (t-this.lastT)/1000 * speedFactor;
+        this.position[2] += this.velocity * Math.cos(this.angle) * (t-this.lastT)/1000 * speedFactor;
+        this.lastT = t;
     }
 
     turn(val){
