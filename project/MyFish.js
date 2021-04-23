@@ -90,7 +90,7 @@ export class MyFish extends CGFobject {
         this.scene.pushMatrix();
         this.scene.translate(-0.125, 0.05, 0.09);
         this.scene.scale(0.035,0.035,0.035);
-        this.scene.rotate(Math.PI/2, 1.0, 0.0, 0.0);
+        this.scene.rotate(Math.PI/2, 1.0, 0.20, 0.50);
         this.sphere.display();
         this.scene.popMatrix();
 
@@ -98,7 +98,7 @@ export class MyFish extends CGFobject {
         this.scene.pushMatrix();
         this.scene.translate(-0.125, 0.05, -0.09);
         this.scene.scale(0.035,0.035,0.035);
-        this.scene.rotate(Math.PI/2, -1.0, 0.0, 0.0);
+        this.scene.rotate(Math.PI/2, -1.0, 0.20, 0.25);
         this.sphere.display();
         this.scene.popMatrix();
 
