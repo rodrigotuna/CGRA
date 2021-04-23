@@ -75,7 +75,6 @@ export class MyFish extends CGFobject {
         this.triangle.display();
         this.scene.popMatrix();
 
-
     }
 
 
