@@ -3,6 +3,7 @@ import { MySphere } from "./MySphere.js";
 import { MyMovingObject } from "./MyMovingObject.js";
 import { MyCubeMap } from "./MyCubeMap.js";
 import { MyCylinder } from "./MyCylinder.js";
+import { MyFish } from "./MyFish.js";
 
 /**
 * MyScene
@@ -30,32 +31,33 @@ export class MyScene extends CGFscene {
         this.enableTextures(true);
 
         //Textures
-        this.cubeTopTexture = new CGFtexture(this, 'images/demo_cubemap/top.png');
-        this.cubeBotTexture = new CGFtexture(this, 'images/demo_cubemap/bottom.png');
-        this.cubeBackTexture = new CGFtexture(this, 'images/demo_cubemap/front.png');
-        this.cubeLeftTexture = new CGFtexture(this, 'images/demo_cubemap/left.png');
-        this.cubeFrontTexture = new CGFtexture(this, 'images/demo_cubemap/back.png');
-        this.cubeRightTexture = new CGFtexture(this, 'images/demo_cubemap/right.png');
+        this.cubeTopTexture = new CGFtexture(this, 'images/underwater_cubemap/top.jpg');
+        this.cubeBotTexture = new CGFtexture(this, 'images/underwater_cubemap/bottom.jpg');
+        this.cubeBackTexture = new CGFtexture(this, 'images/underwater_cubemap/front.jpg');
+        this.cubeLeftTexture = new CGFtexture(this, 'images/underwater_cubemap/left.jpg');
+        this.cubeFrontTexture = new CGFtexture(this, 'images/underwater_cubemap/back.jpg');
+        this.cubeRightTexture = new CGFtexture(this, 'images/underwater_cubemap/right.jpg');
 
-        this.mountainTexture = [this.cubeTopTexture, this.cubeBotTexture, this.cubeFrontTexture, this.cubeBackTexture, this.cubeRightTexture, this.cubeLeftTexture];
+        this.waterTexture = [this.cubeTopTexture, this.cubeBotTexture, this.cubeFrontTexture, this.cubeBackTexture, this.cubeRightTexture, this.cubeLeftTexture];
 
-        this.sunsetTopTexture = new CGFtexture(this, 'images/sunset/py.png');
-        this.sunsetBotTexture = new CGFtexture(this, 'images/sunset/ny.png');
-        this.sunsetBackTexture = new CGFtexture(this, 'images/sunset/nz.png');
-        this.sunsetLeftTexture = new CGFtexture(this, 'images/sunset/nx.png');
-        this.sunsetFrontTexture = new CGFtexture(this, 'images/sunset/pz.png');
-        this.sunsetRightTexture = new CGFtexture(this, 'images/sunset/px.png');
+        /*this.sunsetTopTexture = new CGFtexture(this, 'images/sunset/py.jpg');
+        this.sunsetBotTexture = new CGFtexture(this, 'images/sunset/ny.jpg');
+        this.sunsetBackTexture = new CGFtexture(this, 'images/sunset/nz.jpg');
+        this.sunsetLeftTexture = new CGFtexture(this, 'images/sunset/nx.jpg');
+        this.sunsetFrontTexture = new CGFtexture(this, 'images/sunset/pz.jpg');
+        this.sunsetRightTexture = new CGFtexture(this, 'images/sunset/px.jpg');*/
 
         this.sunsetTexture = [this.sunsetTopTexture, this.sunsetBotTexture, this.sunsetFrontTexture, this.sunsetBackTexture, this.sunsetRightTexture, this.sunsetLeftTexture];
 
-        this.mapTexture = new CGFtexture(this, 'images/earth.jpg');
+        //this.mapTexture = new CGFtexture(this, 'images/earth.jpg');
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.movingObject = new MyMovingObject(this,0, 0, [0,0,0]);
-        this.cubeMap = new MyCubeMap(this);
+        this.cubeMap = new MyCubeMap(this, this.waterTexture);
         this.cylinder = new MyCylinder(this,60);
+        this.fish = new MyFish(this);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -158,18 +160,21 @@ export class MyScene extends CGFscene {
         this.applyViewMatrix();
         
         // Draw axis
-        if (this.displayAxis)
+        if (!this.displayAxis)
             this.axis.display();
 
-        this.sphereAppearance.setTexture(this.mapTexture);
-        this.sphereAppearance.apply();
+        /*this.sphereAppearance.setTexture(this.mapTexture);
+        this.sphereAppearance.apply();*/
         // ---- BEGIN Primitive drawing section
 
-        if(this.selectedObject == 0) this.movingObject.display();
-        if(this.selectedObject == 1) this.cylinder.display();
-        if(this.selectedObject == 2) this.incompleteSphere.display();
         
-        this.cubeMap.textureList = (this.selectedLandscape == 1) ? this.sunsetTexture : this.mountainTexture ;
+        /*if(this.selectedObject == 0) this.movingObject.display();
+        if(this.selectedObject == 1) this.cylinder.display();
+        if(this.selectedObject == 2) this.incompleteSphere.display();*/
+        
+        //this.cubeMap.textureList = (this.selectedLandscape == 1) ? this.sunsetTexture : this.mountainTexture ;
+        this.sphereAppearance.apply();
+        this.fish.display();
         this.cubeMap.display();
 
         // ---- END Primitive drawing section
