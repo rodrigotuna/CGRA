@@ -15,25 +15,31 @@ export class MyFish extends CGFobject {
     }
 
     initMaterials(){
-        this.finAppearance = new CGFappearance(this.scene);
-        this.finAppearance.setAmbient(0.8, 0.0, 0.0, 1.0);
-        this.finAppearance.setDiffuse(0.8, 0.0, 0.0, 0.5);
-        this.finAppearance.setSpecular(0.8, 0.0, 0.0, 0.5);
-        this.finAppearance.setShininess(10.0);
+        this.fishAppearance = new CGFappearance(this.scene);
+        this.fishAppearance.setAmbient(0.8, 0.0, 0.0, 1.0);
+        this.fishAppearance.setDiffuse(0.8, 0.0, 0.0, 0.5);
+        this.fishAppearance.setSpecular(0.8, 0.0, 0.0, 0.5);
+        this.fishAppearance.setShininess(10.0);
 
         this.fishTexture = new CGFtexture(this.scene, "images/fishtexture.jpg");
-        this.finAppearance.setTexture(this.fishTexture);
-		this.finAppearance.setTextureWrap('REPEAT', 'REPEAT');
+        this.fishAppearance.setTexture(this.fishTexture);
+        this.fishAppearance.setTextureWrap('REPEAT', 'REPEAT');
+        
+        this.fishEyeAppearance = new CGFappearance(this.scene);
+        this.fishEyeTexture = new CGFtexture(this.scene, "images/fisheyetexture.png");
+        this.fishEyeAppearance.setTexture(this.fishEyeTexture);
+        this.fishEyeAppearance.setTextureWrap('REPEAT', 'REPEAT');
 
         this.fishShader = new CGFshader(this.scene.gl, "shaders/fish.vert", "shaders/fish.frag");
     }
 
     display(){
-        this.finAppearance.apply();
+
+        this.fishAppearance.apply();
         this.scene.setActiveShader(this.fishShader);
 
         this.scene.pushMatrix();
-        this.scene.translate(0.0, 3.0 ,0.0);
+        //this.scene.translate(0.0, 3.0 ,0.0);
 
         //Fish Body 
         this.scene.pushMatrix();
@@ -52,7 +58,7 @@ export class MyFish extends CGFobject {
         this.triangle.display();
         this.scene.popMatrix();
 
-        //Fish Upper Fin
+        //Fish Upper fish
         this.scene.pushMatrix();
         this.scene.translate(0.08,0.18,0.0);
         this.scene.scale(0.08,0.08,0.08);
@@ -60,7 +66,7 @@ export class MyFish extends CGFobject {
         this.triangle.display();
         this.scene.popMatrix();
 
-        //Fish Left Fin
+        //Fish Left fish
         this.scene.pushMatrix();
         this.scene.translate(-0.06,-0.05,0.115);
         this.scene.scale(0.08,0.08,0.08);
@@ -69,7 +75,7 @@ export class MyFish extends CGFobject {
         this.triangle.display();
         this.scene.popMatrix();
 
-        //Fish Right Fin
+        //Fish Right fish
         this.scene.pushMatrix();
         this.scene.translate(-0.06,-0.05,-0.115);
         this.scene.scale(0.08,0.08,0.08);
@@ -78,12 +84,13 @@ export class MyFish extends CGFobject {
         this.triangle.display();
         this.scene.popMatrix();
 
-        this.scene.sphereAppearance.apply();
+        this.fishEyeAppearance.apply();
 
         //Fish Left Eye
         this.scene.pushMatrix();
         this.scene.translate(-0.125, 0.05, 0.09);
         this.scene.scale(0.035,0.035,0.035);
+        this.scene.rotate(Math.PI/2, 1.0, 0.0, 0.0);
         this.sphere.display();
         this.scene.popMatrix();
 
@@ -91,6 +98,7 @@ export class MyFish extends CGFobject {
         this.scene.pushMatrix();
         this.scene.translate(-0.125, 0.05, -0.09);
         this.scene.scale(0.035,0.035,0.035);
+        this.scene.rotate(Math.PI/2, -1.0, 0.0, 0.0);
         this.sphere.display();
         this.scene.popMatrix();
 
