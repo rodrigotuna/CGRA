@@ -47,7 +47,7 @@ export class MyScene extends CGFscene {
         this.sunsetFrontTexture = new CGFtexture(this, 'images/sunset/pz.jpg');
         this.sunsetRightTexture = new CGFtexture(this, 'images/sunset/px.jpg');*/
 
-        this.sunsetTexture = [this.sunsetTopTexture, this.sunsetBotTexture, this.sunsetFrontTexture, this.sunsetBackTexture, this.sunsetRightTexture, this.sunsetLeftTexture];
+        //this.sunsetTexture = [this.sunsetTopTexture, this.sunsetBotTexture, this.sunsetFrontTexture, this.sunsetBackTexture, this.sunsetRightTexture, this.sunsetLeftTexture];
 
         //this.mapTexture = new CGFtexture(this, 'images/earth.jpg');
 
@@ -173,7 +173,7 @@ export class MyScene extends CGFscene {
         if(this.selectedObject == 2) this.incompleteSphere.display();*/
         
         //this.cubeMap.textureList = (this.selectedLandscape == 1) ? this.sunsetTexture : this.mountainTexture ;
-        this.sphereAppearance.apply();
+        //this.sphereAppearance.apply();
         this.fish.display();
         this.cubeMap.display();
 
