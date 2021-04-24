@@ -58,7 +58,7 @@ export class MyFish extends CGFobject {
         this.triangle.display();
         this.scene.popMatrix();
 
-        //Fish Upper fish
+        //Fish Upper Fin
         this.scene.pushMatrix();
         this.scene.translate(0.08,0.18,0.0);
         this.scene.scale(0.08,0.08,0.08);
@@ -66,7 +66,7 @@ export class MyFish extends CGFobject {
         this.triangle.display();
         this.scene.popMatrix();
 
-        //Fish Left fish
+        //Fish Left Fin
         this.scene.pushMatrix();
         this.scene.translate(-0.06,-0.05,0.115);
         this.scene.scale(0.08,0.08,0.08);
@@ -75,7 +75,7 @@ export class MyFish extends CGFobject {
         this.triangle.display();
         this.scene.popMatrix();
 
-        //Fish Right fish
+        //Fish Right Fin
         this.scene.pushMatrix();
         this.scene.translate(-0.06,-0.05,-0.115);
         this.scene.scale(0.08,0.08,0.08);
