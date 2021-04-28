@@ -4,6 +4,8 @@ import { MyMovingObject } from "./MyMovingObject.js";
 import { MyCubeMap } from "./MyCubeMap.js";
 import { MyCylinder } from "./MyCylinder.js";
 import { MyFish } from "./MyFish.js";
+import { MyPlane } from "./MyPlane.js";
+import { MySeaFloor } from "./MySeaFloor.js";
 
 /**
 * MyScene
@@ -58,6 +60,7 @@ export class MyScene extends CGFscene {
         this.cubeMap = new MyCubeMap(this, this.waterTexture);
         this.cylinder = new MyCylinder(this,60);
         this.fish = new MyFish(this);
+        this.seaFloor = new MySeaFloor(this, 30, 0, 1, 0, 1);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -91,7 +94,7 @@ export class MyScene extends CGFscene {
         this.lights[0].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(1.7, 0.1, 500, vec3.fromValues(2, 2, 2), vec3.fromValues(0, 2, 0));
     }
 
     setDefaultAppearance() {
@@ -177,6 +180,7 @@ export class MyScene extends CGFscene {
         //this.sphereAppearance.apply();
         this.fish.display();
         this.cubeMap.display();
+        this.seaFloor.display();
 
         // ---- END Primitive drawing section
     }
