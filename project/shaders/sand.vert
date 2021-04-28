@@ -8,14 +8,17 @@ uniform mat4 uNMatrix;
 
 varying vec2 vTextureCoord;
 uniform sampler2D uSampler2;
+//uniform float offset;
 
 void main() {
-	vec3 offset=vec3(0.0,0.0,0.0);
+	vec3 offset=vec3(0.0, 0.0,  0.0);
 	
 	vTextureCoord = aTextureCoord;
 
-	if (texture2D(uSampler2, vec2(0.0,0.1)+vTextureCoord).b > 0.5)
-		offset=aVertexNormal*0.1;
+    float height = texture2D(uSampler2, vTextureCoord).g;
+	//if (texture2D(uSampler2, vTextureCoord).r > 0.5)
 
-	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition+offset, 1.0);
+	offset = vec3(0.0, 0.0, height);
+
+	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition + offset, 1.0);
 }

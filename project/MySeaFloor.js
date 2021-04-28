@@ -43,7 +43,7 @@ export class MySeaFloor extends CGFobject{
         this.sandMapTexture.bind(1);
 
         this.scene.pushMatrix();
-        this.scene.scale(50.0, 50.0, 50.0);
+        this.scene.scale(8.0, 1.0, 8.0);
         this.scene.rotate(Math.PI/2, -1.0, 0.0, 0.0);
         this.plane.display();
         this.scene.popMatrix();

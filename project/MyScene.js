@@ -60,7 +60,7 @@ export class MyScene extends CGFscene {
         this.cubeMap = new MyCubeMap(this, this.waterTexture);
         this.cylinder = new MyCylinder(this,60);
         this.fish = new MyFish(this);
-        this.seaFloor = new MySeaFloor(this, 30, 0, 1, 0, 1);
+        this.seaFloor = new MySeaFloor(this, 100, 0, 1, 0, 1);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
