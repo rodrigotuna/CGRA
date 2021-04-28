@@ -51,7 +51,7 @@ export class MyFish extends CGFobject {
         this.scene.setActiveShader(this.fishShader);
 
         this.scene.pushMatrix();
-        //this.scene.translate(0.0, 3.0 ,0.0);
+        this.scene.translate(0.0, 3.0 ,0.0);
 
         //Fish Body 
         this.scene.pushMatrix();

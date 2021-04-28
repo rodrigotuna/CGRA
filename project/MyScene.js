@@ -161,7 +161,7 @@ export class MyScene extends CGFscene {
         this.applyViewMatrix();
         
         // Draw axis
-        if (!this.displayAxis)
+        if (this.displayAxis)
             this.axis.display();
 
         /*this.sphereAppearance.setTexture(this.mapTexture);
