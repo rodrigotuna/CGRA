@@ -6,5 +6,5 @@
 
 ### 1 - MyFish
 
-![Screenshot 1](project/screenshots/proj-t3g02-1.png)
+![Screenshot 1](screenshots/proj-t3g02-1.png)
 
