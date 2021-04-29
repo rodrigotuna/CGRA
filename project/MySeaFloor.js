@@ -20,10 +20,6 @@ export class MySeaFloor extends CGFobject{
 
     initMaterials(){
         this.sandAppearance = new CGFappearance(this.scene);
-        this.sandAppearance.setAmbient(1.0, 1.0, 1.0, 0.3);
-        this.sandAppearance.setDiffuse(1.0, 1.0, 1.0, 1.0);
-        this.sandAppearance.setSpecular(1.0, 1.0, 1.0, 0.8);
-        this.sandAppearance.setShininess(15.0);
 
         this.sandTexture = new CGFtexture(this.scene, "images/sand.png");
         this.sandMapTexture = new CGFtexture(this.scene, "images/sandMap.png");
