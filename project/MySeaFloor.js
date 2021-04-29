@@ -2,22 +2,20 @@ import {CGFobject, CGFappearance, CGFtexture, CGFshader} from '../lib/CGF.js';
 import {MyPlane} from './MyPlane.js'
 
 export class MySeaFloor extends CGFobject{
-    constructor(scene, nDivs, minS, maxS, minT, maxT, offset) {
+    constructor(scene, nDivs, width, height, maxHeight) {
         super(scene);
 
         this.nDivs = nDivs;
-        this.minS = minS;
-        this.maxS = maxS;
-        this.minT = minT;
-        this.maxT = maxT;
-        this.offset = offset;
+        this.width = width;
+        this.height = height;
+        this.maxHeight = maxHeight;
 
         this.init();
         this.initMaterials();
     }
 
     init(){
-        this.plane = new MyPlane(this.scene, this.nDivs, this.minS, this.maxS, this.minT, this.maxT);
+        this.plane = new MyPlane(this.scene, this.nDivs, 0, 1, 0, 1);
     }
 
     initMaterials(){
@@ -35,6 +33,7 @@ export class MySeaFloor extends CGFobject{
 
         this.sandShader = new CGFshader(this.scene.gl, "shaders/sand.vert", "shaders/sand.frag");
         this.sandShader.setUniformsValues({ uSampler2: 1 });
+        this.sandShader.setUniformsValues({ maxHeight: this.maxHeight});
     }
 
     display(){
@@ -43,8 +42,8 @@ export class MySeaFloor extends CGFobject{
         this.sandMapTexture.bind(1);
 
         this.scene.pushMatrix();
-        this.scene.scale(8.0, 1.0, 8.0);
         this.scene.rotate(Math.PI/2, -1.0, 0.0, 0.0);
+        this.scene.scale(this.width, this.height, 1.0);
         this.plane.display();
         this.scene.popMatrix();
 
