@@ -6,6 +6,7 @@ import { MyCylinder } from "./MyCylinder.js";
 import { MyFish } from "./MyFish.js";
 import { MySeaFloor } from "./MySeaFloor.js";
 import { MyWaterSurface } from "./MyWaterSurface.js";
+import { MyRockSet } from "./MyRockSet.js";
 
 /**
 * MyScene
@@ -62,6 +63,7 @@ export class MyScene extends CGFscene {
         this.fish = new MyFish(this);
         this.seaFloor = new MySeaFloor(this, 100, 50, 50, 1);
         this.waterSurface = new MyWaterSurface(this, 100, 50, 50);
+        this.rockSet = new MyRockSet(this, 100);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -182,6 +184,7 @@ export class MyScene extends CGFscene {
         //this.sphereAppearance.apply();
         this.fish.display();
         this.cubeMap.display();
+        this.rockSet.display();
         this.seaFloor.display();
         this.waterSurface.display();
 
