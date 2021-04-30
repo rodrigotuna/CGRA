@@ -182,7 +182,7 @@ export class MyScene extends CGFscene {
         //this.sphereAppearance.apply();
         this.fish.display();
         this.cubeMap.display();
-        this.seaFloor.display();
+        //this.seaFloor.display();
         this.waterSurface.display();
 
         // ---- END Primitive drawing section

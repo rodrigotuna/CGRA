@@ -14,6 +14,7 @@
 ![Screenshot 3](project/screenshots/proj-t3g02-2b.png)
 
 ## 3 - MyWaterSurface
+![Screenshot 4](project/screenshots/proj-t3g02-3.png)
 ![Alt Text](https://media.giphy.com/media/a2bjqlRhmkqU8anQ6Q/giphy.gif)
 
 ## Links Images
