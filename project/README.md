@@ -22,7 +22,7 @@
 ![Screenshot 6](project/screenshots/proj-t3g02-4b.png)
 
 ### 5 - MyPillarSet
-![Screenshot 7](project/screenshots/proj-t3g02-5a.png)
+![Screenshot 7](project/screenshots/proj-t3g02-5.png)
 
 ## Links Images
 
