@@ -151,6 +151,7 @@ export class MyScene extends CGFscene {
         this.checkKeys();
         this.movingObject.update(t, this.speedFactor);
         this.fish.updateAnimation(t);
+        this.waterSurface.updateAnimation(t);
     }
 
     display() {
