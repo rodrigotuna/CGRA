@@ -12,6 +12,7 @@
 
 ![Screenshot 2](project/screenshots/proj-t3g02-2a.png)
 ![Screenshot 3](project/screenshots/proj-t3g02-2b.png)
+![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
 
 ## Links Images
 
