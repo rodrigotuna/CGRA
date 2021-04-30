@@ -1,45 +1,44 @@
-import {CGFobject} from '../lib/CGF.js';
+import {CGFobject, CGFappearance, CGFtexture, CGFshader} from '../lib/CGF.js';
+import {MyCylinder} from './MyCylinder.js';
 /**
-* MyCylinder
+* MyPillar
 * @constructor
  * @param scene - Reference to MyScene object
- * @param slices - number of divisions around the Y axis
+ * @param xPos
+ * @param zPos
 */
-export class MyCylinder extends CGFobject {
-    constructor(scene, slices) {
+export class MyPillar extends CGFobject {
+    constructor(scene, xPos, zPos) {
         super(scene);
-        this.slices = slices;
-        this.initBuffers();
+        
+        this.xPos = xPos;
+        this.zPos = zPos;
+        
+        this.init();
+        this.initMaterials();
+
     }
-    initBuffers() {
-        this.vertices = [];
-        this.indices = [];
-        this.normals = [];
-        this.texCoords = [];
+    init(){
+        this.pillar = new MyCylinder(this.scene,20);
+    }
+    initMaterials(){
+        this.pillarAppearance = new CGFappearance(this.scene);
+        this.pillarAppearance.setAmbient(1.0, 1.0, 1.0, 0.3);
+        this.pillarAppearance.setDiffuse(1.0, 1.0, 1.0, 1.0);
+        this.pillarAppearance.setSpecular(1.0, 1.0, 1.0, 0.8);
+        this.pillarAppearance.setShininess(15.0);
 
-        var ang = 0;
-        var alphaAng = 2*Math.PI/this.slices;
-
-        var s = 0;
-        var sInc = 1/this.slices;
-
-        for(var i = 0; i <= this.slices; i++){
-            this.vertices.push(Math.cos(ang), 0, -Math.sin(ang));
-            this.vertices.push(Math.cos(ang), 1, -Math.sin(ang));
-            this.normals.push(Math.cos(ang), 0 , -Math.sin(ang));
-            this.normals.push(Math.cos(ang), 0 , -Math.sin(ang));
-            this.texCoords.push(s,1);
-            this.texCoords.push(s,0);
-            if(i > 0){
-                this.indices.push(2*i, 2*i+1, 2*i-1);
-                this.indices.push(2*i, 2*i-1, 2*(i-1));
-            }
-            s += sInc;
-            ang+=alphaAng;
-        }
-
-
-        this.primitiveType = this.scene.gl.TRIANGLES;
-        this.initGLBuffers();
+        this.pillarTexture = new CGFtexture(this.scene, "images/woodtexture.jpg");
+        this.pillarAppearance.setTexture(this.pillarTexture);
+        this.pillarAppearance.setTextureWrap('REPEAT', 'REPEAT');
+    }
+    display(){
+        this.pillarAppearance.apply();
+        
+        this.scene.pushMatrix();
+        this.scene.translate(this.xPos, 0.0, this.zPos);
+        this.scene.scale(0.5, 10.0, 0.5);
+        this.pillar.display();
+        this.scene.popMatrix();
     }
 }

@@ -7,6 +7,7 @@ import { MyFish } from "./MyFish.js";
 import { MySeaFloor } from "./MySeaFloor.js";
 import { MyWaterSurface } from "./MyWaterSurface.js";
 import { MyRockSet } from "./MyRockSet.js";
+import { MyPillarSet } from "./MyPillarSet.js";
 
 /**
 * MyScene
@@ -64,6 +65,7 @@ export class MyScene extends CGFscene {
         this.seaFloor = new MySeaFloor(this, 100, 50, 50, 1);
         this.waterSurface = new MyWaterSurface(this, 100, 50, 50);
         this.rockSet = new MyRockSet(this, 100);
+        this.pillarSet = new MyPillarSet(this);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -78,7 +80,7 @@ export class MyScene extends CGFscene {
 		this.sphereAppearance.setDiffuse(0.7, 0.7, 0.7, 1);
         this.sphereAppearance.setSpecular(0.0, 0.0, 0.0, 1);
         this.sphereAppearance.setShininess(120);
-        this.sphereAppearance.setTextureWrap('REPEAT', 'REPEAT')
+        this.sphereAppearance.setTextureWrap('REPEAT', 'REPEAT');
 
         this.objectList = {'Moving Pyramid': 0, 'Cylinder': 1, 'Sphere': 2};
         this.landscapeList = {'Mountains': 0 , 'Sunset': 1};
@@ -182,9 +184,11 @@ export class MyScene extends CGFscene {
         
         //this.cubeMap.textureList = (this.selectedLandscape == 1) ? this.sunsetTexture : this.mountainTexture ;
         //this.sphereAppearance.apply();
+
         this.fish.display();
         this.cubeMap.display();
         this.rockSet.display();
+        this.pillarSet.display();
         this.seaFloor.display();
         this.waterSurface.display();
 
