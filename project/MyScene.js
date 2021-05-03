@@ -8,6 +8,8 @@ import { MySeaFloor } from "./MySeaFloor.js";
 import { MyWaterSurface } from "./MyWaterSurface.js";
 import { MyRockSet } from "./MyRockSet.js";
 import { MyPillarSet } from "./MyPillarSet.js";
+import { MySeaWeedSet } from "./MySeaWeedSet.js";
+import { MySeaWeed } from "./MySeaWeed.js";
 
 /**
 * MyScene
@@ -66,6 +68,7 @@ export class MyScene extends CGFscene {
         this.waterSurface = new MyWaterSurface(this, 100, 50, 50);
         this.rockSet = new MyRockSet(this, 100);
         this.pillarSet = new MyPillarSet(this);
+        this.seaWeedSet = new MySeaWeedSet(this, 20);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -191,6 +194,7 @@ export class MyScene extends CGFscene {
         this.pillarSet.display();
         this.seaFloor.display();
         this.waterSurface.display();
+        this.seaWeedSet.display();
 
         // ---- END Primitive drawing section
     }

@@ -12,7 +12,7 @@ void main() {
 	vec4 color = texture2D(uSampler, vTextureCoord);
 	vec4 filter = texture2D(uSampler2, vTextureCoord);
 
-	if(filter.r > 0.2){
+	if(filter.r > 0.05){
 		color = filter * color * 1.8;
 	}
 
