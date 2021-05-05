@@ -6,19 +6,18 @@ import { MyPyramid } from "./MyPyramid.js";
  * @param scene - Reference to MyScene object
  */
 export class MyMovingObject extends CGFobject {
-	constructor(scene, angle, velocity, position) {
+	constructor(scene, angle, velocity, position, object) {
 		super(scene);
-		this.init();
-        this.angle = angle;
-        this.velocity = velocity;
-        this.position = position;
-        this.lastT = 0;
-	}
-	
-	init() {
-        this.initMaterials();
 
-        this.pyramid = new MyPyramid(this.scene, 4, 2);
+        this.angle = angle;
+        this.originalAngle = angle;
+        this.velocity = velocity;
+        this.originalVelocity = velocity;
+        this.position = position;
+        this.originalPosition = position;
+        this.object = object;
+        this.lastT = 0;
+
 	}
 
     update(t, speedFactor){
@@ -36,34 +35,18 @@ export class MyMovingObject extends CGFobject {
     }
 
     reset(){
-        this.position = [0,0,0];
-        this.velocity = 0;
-        this.angle = 0;
+        this.position = this.originalPosition;
+        this.velocity = this.originalVelocity;
+        this.angle = this.originalAngle;
     }
 
-    initMaterials(){
-
-        this.pyramidAppearance = new CGFappearance(this.scene);
-        this.pyramidAppearance.setAmbient(0.8, 0.0, 0.0, 0.5);
-        this.pyramidAppearance.setDiffuse(0.8, 0.0, 0.0, 0.5);
-        this.pyramidAppearance.setSpecular(0.8, 0.0, 0.0, 1.0);
-        this.pyramidAppearance.setShininess(10.0);
-
-    }
     display(){
-
-        this.pyramidAppearance.apply();
         this.scene.pushMatrix();
         
         this.scene.translate(this.position[0],this.position[1],this.position[2]);
         this.scene.rotate(this.angle, 0, 1, 0);
-        this.scene.scale(this.scene.scaleFactor,this.scene.scaleFactor,this.scene.scaleFactor);
-
-        this.scene.pushMatrix();
-        this.scene.translate(0,0,-1);
-        this.scene.rotate(Math.PI/2,1,0,0);
-        this.pyramid.display();
-        this.scene.popMatrix();
+ 
+        this.object.display();
 
         this.scene.popMatrix();
     }
