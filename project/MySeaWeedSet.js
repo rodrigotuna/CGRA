@@ -18,7 +18,6 @@ export class MySeaWeedSet extends CGFobject {
     }
     
     display(){
-
         for(var i = 0; i < this.numSeaWeeds; i++){
             this.seaWeedArray[i].display();
         }
