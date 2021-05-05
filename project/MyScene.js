@@ -1,6 +1,6 @@
 import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture } from "../lib/CGF.js";
 import { MySphere } from "./MySphere.js";
-import { MyMovingObject } from "./MyMovingObject.js";
+import { MyMovingFish } from "./MyMovingFish.js";
 import { MyCubeMap } from "./MyCubeMap.js";
 import { MyCylinder } from "./MyCylinder.js";
 import { MyFish } from "./MyFish.js";
@@ -60,7 +60,6 @@ export class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
-        this.movingObject = new MyMovingObject(this,0, 0, [0,0,0]);
         this.cubeMap = new MyCubeMap(this, this.waterTexture);
         this.cylinder = new MyCylinder(this,60);
         this.fish = new MyFish(this);
@@ -69,6 +68,7 @@ export class MyScene extends CGFscene {
         this.rockSet = new MyRockSet(this, 100);
         this.pillarSet = new MyPillarSet(this);
         this.seaWeedSet = new MySeaWeedSet(this, 20);
+        this.movingFish = new MyMovingFish(this, 0, 0, [0,3,0], this.fish);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -121,32 +121,44 @@ export class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyW")) {
             text+=" W ";
             keysPressed=true;
-            this.movingObject.accelerate(1.0);
+            this.movingFish.accelerate(1.0);
         }
 
         if (this.gui.isKeyPressed("KeyS")){
             text+=" S ";
             keysPressed=true;
-            this.movingObject.accelerate(-1.0);
+            this.movingFish.accelerate(-1.0);
         }
 
         if (this.gui.isKeyPressed("KeyA")){
             text+=" A ";
             keysPressed=true;
-            this.movingObject.turn(Math.PI/24 * this.speedFactor);
+            this.movingFish.turn(Math.PI/24 * this.speedFactor);
         }
 
         if (this.gui.isKeyPressed("KeyD")){
             text+=" D ";
             keysPressed=true;
-            this.movingObject.turn(-Math.PI/24*this.speedFactor);
+            this.movingFish.turn(-Math.PI/24*this.speedFactor);
         }
 
         if (this.gui.isKeyPressed("KeyR")){
             text+=" R ";
             keysPressed=true;
-            this.movingObject.reset();
+            this.movingFish.reset();
         }
+
+        /*if (this.gui.isKeyPressed("KeyP")){
+            text+=" R ";
+            keysPressed=true;
+            this.moving.reset();
+        }
+
+        if (this.gui.isKeyPressed("KeyL")){
+            text+=" R ";
+            keysPressed=true;
+            this.moving.reset();
+        }*/
 
         if (keysPressed)
                 console.log(text);
@@ -156,7 +168,7 @@ export class MyScene extends CGFscene {
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         this.checkKeys();
-        this.movingObject.update(t, this.speedFactor);
+        this.movingFish.update(t, this.speedFactor);
         this.fish.updateAnimation(t);
         this.waterSurface.updateAnimation(t);
     }
@@ -188,7 +200,7 @@ export class MyScene extends CGFscene {
         //this.cubeMap.textureList = (this.selectedLandscape == 1) ? this.sunsetTexture : this.mountainTexture ;
         //this.sphereAppearance.apply();
 
-        this.fish.display();
+        this.movingFish.display();
         this.cubeMap.display();
         this.rockSet.display();
         this.pillarSet.display();
