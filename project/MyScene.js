@@ -148,17 +148,17 @@ export class MyScene extends CGFscene {
             this.movingFish.reset();
         }
 
-        /*if (this.gui.isKeyPressed("KeyP")){
-            text+=" R ";
+        if (this.gui.isKeyPressed("KeyP")){
+            text+=" P ";
             keysPressed=true;
-            this.moving.reset();
+            this.movingFish.lift();
         }
 
         if (this.gui.isKeyPressed("KeyL")){
-            text+=" R ";
+            text+=" L ";
             keysPressed=true;
-            this.moving.reset();
-        }*/
+            this.movingFish.drop();
+        }
 
         if (keysPressed)
                 console.log(text);
@@ -169,6 +169,7 @@ export class MyScene extends CGFscene {
     update(t){
         this.checkKeys();
         this.movingFish.update(t, this.speedFactor);
+        this.movingFish.updateTime(t);
         this.fish.updateAnimation(t);
         this.waterSurface.updateAnimation(t);
     }
