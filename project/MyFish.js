@@ -14,6 +14,9 @@ export class MyFish extends CGFobject {
         this.sphere = new MySphere(this.scene,20,20);
         this.tailAngle = 0.0;
         this.finAngle = 0.0;
+
+        this.rightFinMoving = true;
+        this.leftFinMoving = true;
     }
 
     updateAnimation(t){
