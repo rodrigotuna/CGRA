@@ -33,5 +33,10 @@ export class MyMovingFish extends MyMovingObject {
         this.verticalVelocity = -1.0;
     }
 
+    reset() {
+        super.reset();
+        this.verticalVelocity = 0.0; 
+    }
+
     
 }
