@@ -9,6 +9,7 @@ import { MyWaterSurface } from "./MyWaterSurface.js";
 import { MyRockSet } from "./MyRockSet.js";
 import { MyPillarSet } from "./MyPillarSet.js";
 import { MySeaWeedSet } from "./MySeaWeedSet.js";
+import { MyNest } from "./MyNest.js";
 
 /**
 * MyScene
@@ -57,6 +58,7 @@ export class MyScene extends CGFscene {
         this.seaWeedSet = new MySeaWeedSet(this, 20);
         this.fish = new MyFish(this);
         this.movingFish = new MyMovingFish(this, 0, 0, [0,3,0], this.fish);
+        this.nest = new MyNest(this, 2.0, [14.1, -0.5, 4.3]);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -137,7 +139,7 @@ export class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyR")){
             text+=" R ";
             keysPressed=true;
-            this.movingFish.reset();
+            this.movingFish.reset(this.rockSet);
         }
 
         if (this.gui.isKeyPressed("KeyP")){
@@ -155,7 +157,7 @@ export class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyC")){
             text+=" C ";
             keysPressed=true;
-            this.movingFish.collectRock(this.rockSet);
+            this.movingFish.rockInteraction(this.rockSet, this.nest);
         }
 
         if (keysPressed)
@@ -206,6 +208,7 @@ export class MyScene extends CGFscene {
         this.seaFloor.display();
         this.waterSurface.display();
         this.seaWeedSet.display();
+        this.nest.display();
 
         // ---- END Primitive drawing section
     }

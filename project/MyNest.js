@@ -1,26 +1,24 @@
 import {CGFobject, CGFappearance, CGFtexture, CGFshader} from '../lib/CGF.js';
 import {MyRock} from './MyRock.js';
 
-export class MyRockSet extends CGFobject {
-    constructor(scene, numRocks) {
+export class MyNest extends CGFobject {
+    constructor(scene, radius, centerCoords) {
         super(scene);
 
-        this.numRocks = numRocks;
+        this.radius = radius;
+        this.centerCoords = centerCoords;
 
         this.init();
         this.initMaterials();
     }
 
     init(){
+        this.numRocks = 0;
         this.rockArray = [];
         this.rockPosition = [];
         this.rockSize = [];
-        for(var i = 0; i < this.numRocks; i++){
-            this.rockArray.push(new MyRock(this.scene, 10, 10));
-            this.rockPosition.push(50 * Math.random() - 25, 1.0, 50 * Math.random() - 25);
-            this.rockSize.push(0.15*Math.random(), 0.15*Math.random(), 0.15*Math.random());
-        }
     }
+    
     initMaterials(){
         this.rockAppearance = new CGFappearance(this.scene);
         this.rockAppearance.setAmbient(0.41, 0.43, 0.55, 0.3);
@@ -29,38 +27,27 @@ export class MyRockSet extends CGFobject {
         this.rockAppearance.setShininess(15.0);
     }
 
-    getRockPositions(){
-        return this.rockPosition;
-    }
-
-    getRockAppearance(){
-        return this.rockAppearance;
-    }
-
-    removeRock(val){
-        this.numRocks--;
-        return this.rockArray.splice(val,1);
-    }
-
-    removeRockPosition(val){
-        return this.rockPosition.splice(val,3);
-    }
-
-    removeRockSize(val){
-        return this.rockSize.splice(val,3);
-    }
-
     addRock(val){
         this.numRocks++;
         this.rockArray.push(val);
     }
 
-    addRockPosition(val){
-        this.rockPosition.push(val[0], val[1], val[2]);
+    addRandomRockPosition(){
+        var r = Math.random() * this.radius;
+        var theta = Math.random() * 2 * Math.PI;
+        this.rockPosition.push(this.centerCoords[0] + r * Math.sin(theta), this.centerCoords[1], this.centerCoords[2] + r * Math.cos(theta));
     }
 
     addRockSize(val){
         this.rockSize.push(val[0], val[1], val[2]);
+    }
+
+    getRadius(){
+        return this.radius;
+    }
+
+    getCenterCoords(){
+        return this.centerCoords;
     }
 
     display(){

@@ -46,27 +46,50 @@ export class MyMovingFish extends MyMovingObject {
         this.object.updateTailSpeed(Math.abs(this.velocity));
     }
 
-    reset() {
+    reset(rockSet) {
         super.reset();
         this.verticalVelocity = 0.0;
         this.object.updateTailSpeed(Math.abs(this.velocity));
+        if(this.hasRock){
+            this.hasRock = false;
+            rockSet.addRock(this.rock);
+            rockSet.addRockSize(this.rockSize);
+            rockSet.addRockPosition(this.rockPosition);
+        }
+    }
+
+    rockInteraction(rockSet, nest){
+        if(this.position[1] <= 1.0){
+            if(this.hasRock) this.placeRock(nest);
+            else this.collectRock(rockSet);
+        }
     }
 
     collectRock(rockSet){
-        if(this.position[1] <= 1.0 && !this.hasRock){
-            var rockPositions = rockSet.getRockPositions();
-            for(var i = 0; i < rockPositions.length; i+= 3){
-                if(Math.sqrt(Math.pow(this.position[0] - rockPositions[i], 2) + Math.pow(this.position[2] - rockPositions[i+2],2)) < 1.5){
-                    this.hasRock = true;
-                    this.rock = rockSet.removeRock(i/3)[0];
-                    this.rockPosition = rockSet.removeRockPosition(i);
-                    this.rockSize = rockSet.removeRockSize(i);
-                    this.rockAppearence = rockSet.getRockAppearance();
-                    break;
-                }
+        var rockPositions = rockSet.getRockPositions();
+        for(var i = 0; i < rockPositions.length; i+= 3){
+            if(Math.sqrt(Math.pow(this.position[0] - rockPositions[i], 2) + Math.pow(this.position[2] - rockPositions[i+2],2)) < 1.5){
+                this.hasRock = true;
+                this.rock = rockSet.removeRock(i/3)[0];
+                this.rockPosition = rockSet.removeRockPosition(i);
+                this.rockSize = rockSet.removeRockSize(i);
+                this.rockAppearence = rockSet.getRockAppearance();
+                break;
             }
         }
     }
+
+    placeRock(nest){
+        var r = nest.getRadius();
+        var coords = nest.getCenterCoords();
+        if(Math.sqrt(Math.pow(this.position[0] - coords[0], 2) + Math.pow(this.position[2] - coords[2],2)) < r){
+            this.hasRock = false;
+            nest.addRock(this.rock);
+            nest.addRockSize(this.rockSize);
+            nest.addRandomRockPosition();
+        }
+    }
+           
 
     display(){
         super.display();
