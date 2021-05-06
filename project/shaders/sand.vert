@@ -15,7 +15,7 @@ void main() {
 	
 	vTextureCoord = aTextureCoord;
 
-    float height = min(3.0*texture2D(uSampler2, vTextureCoord).g - 0.5, maxHeight);
+    float height = min(3.0*texture2D(uSampler2, vTextureCoord).r - 0.5, maxHeight);
 
 	offset = vec3(0.0, 0.0, height);
 
