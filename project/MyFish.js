@@ -15,12 +15,16 @@ export class MyFish extends CGFobject {
         this.tailAngle = 0.0;
         this.finAngle = 0.0;
 
+        this.tailSpeed = 1;
+
         this.rightFinMoving = true;
         this.leftFinMoving = true;
+
+        this.tailTilting = 0;
     }
 
     updateAnimation(t){
-        this.tailAngle = Math.PI/9 * Math.sin(0.01*t);
+        this.tailAngle = Math.PI/9 * Math.sin(0.01*t*this.tailSpeed);
         this.finAngle = Math.PI/9 * Math.sin(0.005*t);
     }
 
@@ -48,6 +52,30 @@ export class MyFish extends CGFobject {
         this.fishShader = new CGFshader(this.scene.gl, "shaders/fish.vert", "shaders/fish.frag");
     }
 
+    startRightMovement(){
+        this.rightFinMoving = false;
+        this.tailTilting = 1;
+    }
+
+    startLeftMovement() {
+        this.leftFinMoving = false;
+        this.tailTilting = -1;
+    }
+
+    stopRightMovement(){
+        this.rightFinMoving = true;
+        this.tailTilting = 0;
+    }
+
+    stopLeftMovement() {
+        this.leftFinMoving = true;
+        this.tailTilting = 0;
+    }
+
+    updateTailSpeed(val){
+        this.tailSpeed = val > 0 ? val : 1;
+    }
+
     display(){
 
         this.fishAppearance.apply();
@@ -65,7 +93,7 @@ export class MyFish extends CGFobject {
         //Fish Tail
         this.scene.pushMatrix();
         this.scene.translate(0.25,0.0,0.0);
-        this.scene.rotate(this.tailAngle, 0.0, 1.0, 0.0);
+        this.scene.rotate(this.tailAngle + this.tailTilting * Math.PI/6 , 0.0, 1.0, 0.0);
         this.scene.scale(0.15,0.15,0.15);
         this.scene.rotate(Math.PI/4, 0.0, 0.0, -1.0);
         this.triangle.display();
@@ -83,7 +111,7 @@ export class MyFish extends CGFobject {
         this.scene.pushMatrix();
         this.scene.translate(-0.06,-0.05,0.115);
         this.scene.scale(0.08,0.08,0.08);
-        this.scene.rotate(Math.PI/6 + this.finAngle, -1.0, 0.0, 0.0);
+        this.scene.rotate(Math.PI/6 + this.finAngle * this.leftFinMoving, -1.0, 0.0, 0.0);
         this.scene.translate(0.0, -2.0, 0.0);
         this.triangle.display();
         this.scene.popMatrix();
@@ -92,7 +120,7 @@ export class MyFish extends CGFobject {
         this.scene.pushMatrix();
         this.scene.translate(-0.06,-0.05,-0.115);
         this.scene.scale(0.08,0.08,0.08);
-        this.scene.rotate(Math.PI/6 + this.finAngle, 1.0, 0.0, 0.0);
+        this.scene.rotate(Math.PI/6 + this.finAngle * this.rightFinMoving, 1.0, 0.0, 0.0);
         this.scene.translate(0.0, -2.0, 0.0);
         this.triangle.display();
         this.scene.popMatrix();

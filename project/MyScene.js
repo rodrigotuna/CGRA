@@ -9,7 +9,6 @@ import { MyWaterSurface } from "./MyWaterSurface.js";
 import { MyRockSet } from "./MyRockSet.js";
 import { MyPillarSet } from "./MyPillarSet.js";
 import { MySeaWeedSet } from "./MySeaWeedSet.js";
-import { MySeaWeed } from "./MySeaWeed.js";
 
 /**
 * MyScene
@@ -46,28 +45,17 @@ export class MyScene extends CGFscene {
 
         this.waterTexture = [this.cubeTopTexture, this.cubeBotTexture, this.cubeFrontTexture, this.cubeBackTexture, this.cubeRightTexture, this.cubeLeftTexture];
 
-        /*this.sunsetTopTexture = new CGFtexture(this, 'images/sunset/py.jpg');
-        this.sunsetBotTexture = new CGFtexture(this, 'images/sunset/ny.jpg');
-        this.sunsetBackTexture = new CGFtexture(this, 'images/sunset/nz.jpg');
-        this.sunsetLeftTexture = new CGFtexture(this, 'images/sunset/nx.jpg');
-        this.sunsetFrontTexture = new CGFtexture(this, 'images/sunset/pz.jpg');
-        this.sunsetRightTexture = new CGFtexture(this, 'images/sunset/px.jpg');*/
-
-        //this.sunsetTexture = [this.sunsetTopTexture, this.sunsetBotTexture, this.sunsetFrontTexture, this.sunsetBackTexture, this.sunsetRightTexture, this.sunsetLeftTexture];
-
-        //this.mapTexture = new CGFtexture(this, 'images/earth.jpg');
-
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.cubeMap = new MyCubeMap(this, this.waterTexture);
         this.cylinder = new MyCylinder(this,60);
-        this.fish = new MyFish(this);
         this.seaFloor = new MySeaFloor(this, 100, 50, 50, 1);
         this.waterSurface = new MyWaterSurface(this, 100, 50, 50);
         this.rockSet = new MyRockSet(this, 100);
         this.pillarSet = new MyPillarSet(this);
         this.seaWeedSet = new MySeaWeedSet(this, 20);
+        this.fish = new MyFish(this);
         this.movingFish = new MyMovingFish(this, 0, 0, [0,3,0], this.fish);
 
         this.defaultAppearance = new CGFappearance(this);
@@ -134,12 +122,16 @@ export class MyScene extends CGFscene {
             text+=" A ";
             keysPressed=true;
             this.movingFish.turn(Math.PI/24 * this.speedFactor);
+        } else {
+            this.fish.stopLeftMovement();
         }
 
         if (this.gui.isKeyPressed("KeyD")){
             text+=" D ";
             keysPressed=true;
             this.movingFish.turn(-Math.PI/24*this.speedFactor);
+        } else {
+            this.fish.stopRightMovement();
         }
 
         if (this.gui.isKeyPressed("KeyR")){
@@ -158,6 +150,12 @@ export class MyScene extends CGFscene {
             text+=" L ";
             keysPressed=true;
             this.movingFish.drop();
+        }
+
+        if (this.gui.isKeyPressed("KeyC")){
+            text+=" C ";
+            keysPressed=true;
+            this.movingFish.collectRock(this.rockSet);
         }
 
         if (keysPressed)

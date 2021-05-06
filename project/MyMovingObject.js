@@ -1,5 +1,4 @@
 import {CGFobject, CGFappearance} from '../lib/CGF.js';
-import { MyPyramid } from "./MyPyramid.js";
 /**
  * MyTangram
  * @constructor
