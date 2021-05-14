@@ -26,14 +26,13 @@ export class MyPyramid extends CGFobject {
             // even if they are shared with others, as the normals 
             // in each face will be different
 
+            var height = 0;
+            var deltaH = 1.0/this.stacks;
+
             var sa=Math.sin(ang);
             var saa=Math.sin(ang+alphaAng);
             var ca=Math.cos(ang);
             var caa=Math.cos(ang+alphaAng);
-
-            this.vertices.push(0,1,0);
-            this.vertices.push(ca, 0, -sa);
-            this.vertices.push(caa, 0, -saa);
 
             // triangle normal computed by cross product of two edges
             var normal= [
@@ -52,12 +51,20 @@ export class MyPyramid extends CGFobject {
             normal[1]/=nsize;
             normal[2]/=nsize;
 
-            // push normal once for each vertex of this triangle
-            this.normals.push(...normal);
-            this.normals.push(...normal);
-            this.normals.push(...normal);
+            for(var j = 0; j <= this.stacks; j++){
+                this.vertices.push((1-height)*ca, height, -(1-height)*sa);
+                this.vertices.push((1-height)*caa, height, -(1-height)*saa);
 
-            this.indices.push(3*i, (3*i+1) , (3*i+2) );
+                this.normals.push(...normal);
+                this.normals.push(...normal);
+
+                if(j == 0) continue;
+
+                this.indices.push((this.stacks + 1)*2*i + 2*(j-1), (this.stacks + 1)*2*i + 2*(j-1) + 1, (this.stacks + 1)*2*i + 2*j + 1);
+                this.indices.push((this.stacks + 1)*2*i + 2*(j-1), (this.stacks + 1)*2*i + 2*j + 1, (this.stacks + 1)*2*i + 2*j);
+
+                height += deltaH;
+            }   
 
             ang+=alphaAng;
         }

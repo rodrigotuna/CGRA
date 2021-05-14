@@ -28,6 +28,7 @@ export class MySeaWeed extends CGFobject {
     }
     initMaterials(){
         this.seaweedShader = new CGFshader(this.scene.gl, "shaders/seaweed.vert", "shaders/seaweed.frag");
+        this.seaweedShader.setUniformsValues({ randFactor: 0.5*Math.random() + 0.9});
     }
 
     updateAnimation(t){

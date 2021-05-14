@@ -10,6 +10,7 @@ import { MyRockSet } from "./MyRockSet.js";
 import { MyPillarSet } from "./MyPillarSet.js";
 import { MySeaWeedSet } from "./MySeaWeedSet.js";
 import { MyNest } from "./MyNest.js";
+import { MyPyramid } from "./MyPyramid.js";
 
 /**
 * MyScene
