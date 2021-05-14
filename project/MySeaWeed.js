@@ -27,14 +27,17 @@ export class MySeaWeed extends CGFobject {
         }
     }
     initMaterials(){
-        this.seaweedAppearance = new CGFappearance(this.scene);
-        this.seaweedAppearance.setAmbient(0.38, 0.40, 0.18, 0.3);
-        this.seaweedAppearance.setDiffuse(0.38, 0.40, 0.18, 1.0);
-        this.seaweedAppearance.setSpecular(0.38, 0.40, 0.18, 0.8);
-        this.seaweedAppearance.setShininess(15.0);
+        this.seaweedShader = new CGFshader(this.scene.gl, "shaders/seaweed.vert", "shaders/seaweed.frag");
     }
+
+    updateAnimation(t){
+        this.timeFactor = t;
+        this.seaweedShader.setUniformsValues({ timeFactor: this.timeFactor / 100 % 100});
+    }
+
+
     display(){
-        this.seaweedAppearance.apply();
+        this.scene.setActiveShader(this.seaweedShader);
         
         var angle = 0;
         var inc = 2*Math.PI/this.size;
@@ -49,5 +52,8 @@ export class MySeaWeed extends CGFobject {
             this.scene.popMatrix();
             angle += inc;
         }
+
+        this.scene.setActiveShader(this.scene.defaultShader);
+    
     }
 }

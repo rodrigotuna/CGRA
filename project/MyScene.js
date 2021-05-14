@@ -172,6 +172,7 @@ export class MyScene extends CGFscene {
         this.movingFish.updateTime(t);
         this.fish.updateAnimation(t);
         this.waterSurface.updateAnimation(t);
+        this.seaWeedSet.updateAnimation(t);
     }
 
     display() {

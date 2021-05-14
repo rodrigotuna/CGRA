@@ -31,6 +31,7 @@ export class MySeaFloor extends CGFobject{
         this.sandShader.setUniformsValues({ uSampler2: 1 });
         this.sandShader.setUniformsValues({ maxHeight: this.maxHeight});
     }
+    
 
     display(){
         this.sandAppearance.apply();

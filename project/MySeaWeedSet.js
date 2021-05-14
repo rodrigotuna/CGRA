@@ -16,6 +16,12 @@ export class MySeaWeedSet extends CGFobject {
             this.seaWeedArray.push(new MySeaWeed(this.scene, 50 * Math.random() - 25, 50 * Math.random() - 25, Math.floor( 4* Math.random()) + 3 ));
         }
     }
+
+    updateAnimation(t){
+       for(var i = 0; i < this.numSeaWeeds; i++){
+           this.seaWeedArray[i].updateAnimation(t);
+       }
+    }
     
     display(){
         for(var i = 0; i < this.numSeaWeeds; i++){

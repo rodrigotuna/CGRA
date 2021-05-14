@@ -18,7 +18,7 @@ export class MyRockSet extends CGFobject {
         for(var i = 0; i < this.numRocks; i++){
             this.rockArray.push(new MyRock(this.scene, 10, 10));
             this.rockPosition.push(50 * Math.random() - 25, 1.0, 50 * Math.random() - 25);
-            this.rockSize.push(0.15*Math.random(), 0.15*Math.random(), 0.15*Math.random());
+            this.rockSize.push(0.02*Math.random() + 0.10, 0.02*Math.random() + 0.10, 0.02*Math.random() + 0.10);
         }
     }
     initMaterials(){
