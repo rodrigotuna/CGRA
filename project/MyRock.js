@@ -1,12 +1,12 @@
 import {CGFobject} from '../lib/CGF.js';
 
-export class MyRock extends CGFobject {
-  /**
+  /**MyRock
    * @method constructor
-   * @param  {CGFscene} scene - MyScene object
-   * @param  {integer} slices - number of slices around Y axis
-   * @param  {integer} stacks - number of stacks along Y axis, from the center to the poles (half of sphere)
+   * @param   scene - Reference to MyScene object
+   * @param  slices - number of slices around Y axis
+   * @param  stacks - number of stacks along Y axis, from the center to the poles (half of sphere)
    */
+export class MyRock extends CGFobject {
   constructor(scene, slices, stacks) {
     super(scene);
     this.latDivs = stacks * 2;

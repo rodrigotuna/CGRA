@@ -1,6 +1,14 @@
 import {CGFobject, CGFappearance, CGFtexture, CGFshader} from '../lib/CGF.js';
 import {MyPlane} from './MyPlane.js'
 
+  /**MySeaFloor
+   * @method constructor
+   * @param scene - Reference to MyScene object
+   * @param nDivs - Number of divisions in both directions of the SeaFloor
+   * @param width - Width of the SeaFloor Plane
+   * @param height - Height of the SeaFloor Plane
+   * @param maxHeight - Maximum Height of the Sand in the SeaFloor
+   */
 export class MySeaFloor extends CGFobject{
     constructor(scene, nDivs, width, height, maxHeight) {
         super(scene);

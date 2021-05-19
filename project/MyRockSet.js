@@ -1,6 +1,12 @@
 import {CGFobject, CGFappearance, CGFtexture, CGFshader} from '../lib/CGF.js';
 import {MyRock} from './MyRock.js';
 
+
+  /**MyRockSet
+   * @method constructor
+   * @param scene - Reference to MyScene object
+   * @param numRocks - Number of rocks in a set 
+   */
 export class MyRockSet extends CGFobject {
     constructor(scene, numRocks) {
         super(scene);

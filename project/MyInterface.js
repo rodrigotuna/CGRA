@@ -2,7 +2,7 @@ import {CGFinterface, dat} from '../lib/CGF.js';
 
 /**
 * MyInterface
-* @constructor
+* @method constructor
 */
 export class MyInterface extends CGFinterface {
     constructor() {
@@ -20,10 +20,6 @@ export class MyInterface extends CGFinterface {
 
         //Checkbox element in GUI
         this.gui.add(this.scene, 'displayAxis').name('Display Axis');
-        this.gui.add(this.scene, 'selectedObject', this.scene.objectList).name('Object Type');
-        this.gui.add(this.scene, 'selectedLandscape', this.scene.landscapeList).name('Landscapes');
-        this.gui.add(this.scene, 'scaleFactor', 0.5, 3.0).name('Scale');
-        this.gui.add(this.scene, 'speedFactor', 0.1, 3.0).name('Speed');
 
         this.initKeys();
         return true;

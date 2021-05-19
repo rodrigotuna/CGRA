@@ -1,7 +1,7 @@
 import {CGFobject} from '../lib/CGF.js';
 /**
 * MyPyramid
-* @constructor
+* @method constructor
  * @param scene - Reference to MyScene object
  * @param slices - number of divisions around the Y axis
  * @param stacks - number of divisions along the Y axis

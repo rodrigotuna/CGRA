@@ -1,6 +1,12 @@
 import {CGFobject} from '../lib/CGF.js';
 import { MySeaWeed } from './MySeaWeed.js';
 
+/**
+* MySeaWeedSet
+* @constructor
+ * @param scene - Reference to MyScene object
+ * @param numSeaWeeds - Number of seaweed sets in the scene
+*/
 export class MySeaWeedSet extends CGFobject {
     constructor(scene, numSeaWeeds) {
         super(scene);

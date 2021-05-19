@@ -2,6 +2,11 @@ import {CGFobject, CGFappearance, CGFtexture, CGFshader} from '../lib/CGF.js';
 import {MySphere} from './MySphere.js';
 import {MyTriangle} from './MyTriangle.js';
 
+/**
+* MyFish
+* @method constructor
+ * @param scene - Reference to MyScene object
+*/
 export class MyFish extends CGFobject {
     constructor(scene) {
         super(scene);
@@ -32,12 +37,14 @@ export class MyFish extends CGFobject {
         this.fishAppearance = new CGFappearance(this.scene);
         this.fishAppearance.setAmbient(0.89, 0.45, 0.36, 0.3);
         this.fishAppearance.setDiffuse(0.89, 0.45, 0.36, 1.0);
-        this.fishAppearance.setSpecular(0.89, 0.45, 0.36, 0.8);
+        this.fishAppearance.setSpecular(0.89, 0.45, 0.36, 0.5);
         this.fishAppearance.setShininess(15.0);
 
+        this.fishBody= new CGFappearance(this.scene);
+
         this.fishTexture = new CGFtexture(this.scene, "images/fishtexture.jpg");
-        this.fishAppearance.setTexture(this.fishTexture);
-        this.fishAppearance.setTextureWrap('REPEAT', 'REPEAT');
+        this.fishBody.setTexture(this.fishTexture);
+        this.fishBody.setTextureWrap('REPEAT', 'REPEAT');
         
         this.fishEyeAppearance = new CGFappearance(this.scene);
         this.fishEyeAppearance.setAmbient(1.0, 1.0, 1.0, 0.3);
@@ -78,7 +85,7 @@ export class MyFish extends CGFobject {
 
     display(){
 
-        this.fishAppearance.apply();
+        this.fishBody.apply();
         this.scene.setActiveShader(this.fishShader);
 
         //Fish Body 
@@ -88,6 +95,7 @@ export class MyFish extends CGFobject {
         this.sphere.display();
         this.scene.popMatrix();
 
+        this.fishAppearance.apply();
         this.scene.setActiveShader(this.scene.defaultShader);
 
         //Fish Tail

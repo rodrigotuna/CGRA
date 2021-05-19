@@ -3,9 +3,9 @@ import {CGFobject} from '../lib/CGF.js';
 export class MySphere extends CGFobject {
   /**
    * @method constructor
-   * @param  {CGFscene} scene - MyScene object
-   * @param  {integer} slices - number of slices around Y axis
-   * @param  {integer} stacks - number of stacks along Y axis, from the center to the poles (half of sphere)
+   * @param  scene - MyScene object
+   * @param  slices - number of slices around Y axis
+   * @param  stacks - number of stacks along Y axis, from the center to the poles (half of sphere)
    */
   constructor(scene, slices, stacks) {
     super(scene);

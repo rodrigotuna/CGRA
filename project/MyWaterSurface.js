@@ -1,6 +1,13 @@
 import {CGFobject, CGFappearance, CGFtexture, CGFshader} from '../lib/CGF.js';
 import {MyPlane} from './MyPlane.js'
 
+  /**MyWaterSurface
+   * @method constructor
+   * @param scene - Reference to MyScene object
+   * @param nDivs - Number of divisions in both directions of the WaterSurface
+   * @param width - Width of the WaterSurface Plane
+   * @param height - Height of the WaterSurface Plane
+   */
 export class MyWaterSurface extends CGFobject{
     constructor(scene, nDivs, width, height) {
         super(scene);

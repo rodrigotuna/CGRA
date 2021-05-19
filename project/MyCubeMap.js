@@ -3,7 +3,7 @@ import { MyQuad } from "./MyQuad.js";
 
 /**
  * MyCubeMap
- * @constructor
+ * @method constructor
  * @param scene - Reference to MyScene object
  * @param textureList - List of textures for each side of the cube
  */

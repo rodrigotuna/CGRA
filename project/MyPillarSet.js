@@ -1,6 +1,10 @@
 import {CGFobject, CGFappearance, CGFtexture, CGFshader} from '../lib/CGF.js';
 import {MyPillar} from './MyPillar.js';
-
+/**
+* MyPillarSet
+* @method constructor
+ * @param scene - Reference to MyScene object
+*/
 export class MyPillarSet extends CGFobject {
     constructor(scene) {
         super(scene);

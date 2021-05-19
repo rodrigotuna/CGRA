@@ -1,8 +1,12 @@
 import {CGFobject, CGFappearance} from '../lib/CGF.js';
 /**
- * MyTangram
- * @constructor
+ * MyMovingObject
+ * @method constructor
  * @param scene - Reference to MyScene object
+ * @param angle - Angle of the Moving Object
+ * @param velocity - Velocity of the Moving Object
+ * @param position - Position of the Moving Object
+ * @param object - Object to be moved
  */
 export class MyMovingObject extends CGFobject {
 	constructor(scene, angle, velocity, position, object) {
@@ -19,9 +23,9 @@ export class MyMovingObject extends CGFobject {
         
 	}
 
-    update(t, speedFactor){
-        this.position[0] -= this.velocity * Math.cos(this.angle) * (t-this.lastT)/1000 * speedFactor;
-        this.position[2] += this.velocity * Math.sin(this.angle) * (t-this.lastT)/1000 * speedFactor;
+    update(t){
+        this.position[0] -= this.velocity * Math.cos(this.angle) * (t-this.lastT)/1000;
+        this.position[2] += this.velocity * Math.sin(this.angle) * (t-this.lastT)/1000;
     }
 
     updateTime(t) {

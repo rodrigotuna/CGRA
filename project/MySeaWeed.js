@@ -4,8 +4,9 @@ import {MyPyramid} from './MyPyramid.js';
 * Myseaweed
 * @constructor
  * @param scene - Reference to MyScene object
- * @param xPos
- * @param zPos
+ * @param xPos - X coordinate
+ * @param zPos - Z coordinate
+ * @param size - Number of leaves in each seaweed
 */
 export class MySeaWeed extends CGFobject {
     constructor(scene, xPos, zPos, size) {
@@ -28,7 +29,7 @@ export class MySeaWeed extends CGFobject {
     }
     initMaterials(){
         this.seaweedShader = new CGFshader(this.scene.gl, "shaders/seaweed.vert", "shaders/seaweed.frag");
-        this.seaweedShader.setUniformsValues({ randFactor: 0.5*Math.random() + 0.9});
+        this.seaweedShader.setUniformsValues({ randFactor: 0.7*Math.random() + 0.7});
     }
 
     updateAnimation(t){

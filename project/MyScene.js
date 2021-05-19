@@ -10,11 +10,10 @@ import { MyRockSet } from "./MyRockSet.js";
 import { MyPillarSet } from "./MyPillarSet.js";
 import { MySeaWeedSet } from "./MySeaWeedSet.js";
 import { MyNest } from "./MyNest.js";
-import { MyPyramid } from "./MyPyramid.js";
 
 /**
 * MyScene
-* @constructor
+* @method constructor
 */
 export class MyScene extends CGFscene {
     constructor() {
@@ -54,7 +53,7 @@ export class MyScene extends CGFscene {
         this.cylinder = new MyCylinder(this,60);
         this.seaFloor = new MySeaFloor(this, 100, 50, 50, 1);
         this.waterSurface = new MyWaterSurface(this, 100, 50, 50);
-        this.rockSet = new MyRockSet(this, 100);
+        this.rockSet = new MyRockSet(this, 99);
         this.pillarSet = new MyPillarSet(this);
         this.seaWeedSet = new MySeaWeedSet(this, 20);
         this.fish = new MyFish(this);
@@ -80,11 +79,7 @@ export class MyScene extends CGFscene {
         this.landscapeList = {'Mountains': 0 , 'Sunset': 1};
         
         //Objects connected to MyInterface
-        this.displayAxis = true;
-        this.scaleFactor = 1.0;
-        this.speedFactor = 1.0;
-        this.selectedObject = 0;
-        this.selectedLandscape = 0;
+        this.displayAxis = false;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -124,7 +119,7 @@ export class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyA")){
             text+=" A ";
             keysPressed=true;
-            this.movingFish.turn(Math.PI/24 * this.speedFactor);
+            this.movingFish.turn(Math.PI/24);
         } else {
             this.fish.stopLeftMovement();
         }
@@ -132,7 +127,7 @@ export class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyD")){
             text+=" D ";
             keysPressed=true;
-            this.movingFish.turn(-Math.PI/24*this.speedFactor);
+            this.movingFish.turn(-Math.PI/24);
         } else {
             this.fish.stopRightMovement();
         }
@@ -169,7 +164,7 @@ export class MyScene extends CGFscene {
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         this.checkKeys();
-        this.movingFish.update(t, this.speedFactor);
+        this.movingFish.update(t);
         this.movingFish.updateTime(t);
         this.fish.updateAnimation(t);
         this.waterSurface.updateAnimation(t);
@@ -190,18 +185,6 @@ export class MyScene extends CGFscene {
         // Draw axis
         if (this.displayAxis)
             this.axis.display();
-
-        /*this.sphereAppearance.setTexture(this.mapTexture);
-        this.sphereAppearance.apply();*/
-        // ---- BEGIN Primitive drawing section
-
-        
-        /*if(this.selectedObject == 0) this.movingObject.display();
-        if(this.selectedObject == 1) this.cylinder.display();
-        if(this.selectedObject == 2) this.incompleteSphere.display();*/
-        
-        //this.cubeMap.textureList = (this.selectedLandscape == 1) ? this.sunsetTexture : this.mountainTexture ;
-        //this.sphereAppearance.apply();
 
         this.movingFish.display();
         this.cubeMap.display();

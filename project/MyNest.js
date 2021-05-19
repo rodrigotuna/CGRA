@@ -1,6 +1,13 @@
 import {CGFobject, CGFappearance, CGFtexture, CGFshader} from '../lib/CGF.js';
 import {MyRock} from './MyRock.js';
 
+/**
+* MyNest
+* @method constructor
+ * @param scene - Reference to MyScene object
+ * @param radius - Radius of the nest
+ * @param centerCoords - Coordinates of the center of the nest
+*/
 export class MyNest extends CGFobject {
     constructor(scene, radius, centerCoords) {
         super(scene);

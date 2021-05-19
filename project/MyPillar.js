@@ -2,10 +2,10 @@ import {CGFobject, CGFappearance, CGFtexture, CGFshader} from '../lib/CGF.js';
 import {MyCylinder} from './MyCylinder.js';
 /**
 * MyPillar
-* @constructor
+* @method constructor
  * @param scene - Reference to MyScene object
- * @param xPos
- * @param zPos
+ * @param xPos - X coordinate of the Pillar
+ * @param zPos - Z coordinate of the Pillar
 */
 export class MyPillar extends CGFobject {
     constructor(scene, xPos, zPos) {
