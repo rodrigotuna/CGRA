@@ -17,12 +17,21 @@ export class MyMovingFish extends MyMovingObject {
         this.init();
 
 	}
-	
+
+    /**
+     * @method init
+     * Initializes useful moving fish variables
+     */	
 	init() {
         this.verticalVelocity = 0.0;
         this.hasRock = false;
     }
 
+    /**
+     * @method update
+     * @param t Time 
+     * Updates the fish vertical position
+     **/
     update(t){
         super.update(t);
         if(this.verticalVelocity > 0 && this.position[1] >= 3.0) this.verticalVelocity = 0.0;
@@ -31,25 +40,48 @@ export class MyMovingFish extends MyMovingObject {
         this.position[1] += this.verticalVelocity * (t-this.lastT)/1000;
     }
 
+    /**
+     * @method lift
+     * Starts fish ascending movement
+     **/
     lift() {
         this.verticalVelocity = 1.0;
     }
     
+    /**
+     * @method drop
+     * Starts fish descending movement
+     **/
     drop() {
         this.verticalVelocity = -1.0;
     }
 
+    /**
+     * @method turn
+     * @param val Angle in radians
+     * Turns fish and updates fish's fin animation accordingly
+     **/
     turn(val) {
         super.turn(val);
         if(val < 0) this.object.startRightMovement();
         else this.object.startLeftMovement();
     }
 
+    /**
+     * @method turn
+     * @param val Speed delta
+     * Changes fish velocity and updates the tail animation accordingly
+     **/
     accelerate(val){
         super.accelerate(val);
         this.object.updateTailSpeed(Math.abs(this.velocity));
     }
 
+    /**
+     * @method reset
+     * @param rockSet Where the rock will be placed
+     * Resets the fish to its original position 
+     */
     reset(rockSet) {
         super.reset();
         this.verticalVelocity = 0.0;
@@ -62,6 +94,12 @@ export class MyMovingFish extends MyMovingObject {
         }
     }
 
+    /**
+     * @method rockInteraction
+     * @param rockSet - Where rocks are taken from
+     * @param nest - Where rocks will be placed
+     * Places or collects a rock
+     */
     rockInteraction(rockSet, nest){
         if(this.position[1] <= 1.0){
             if(this.hasRock) this.placeRock(nest);
@@ -69,10 +107,15 @@ export class MyMovingFish extends MyMovingObject {
         }
     }
 
+    /**
+     * @method collectRock
+     * @param rockSet - Where rocks are taken from
+     * Collects a rock from the rockSet if the distance condition is met
+     */
     collectRock(rockSet){
         var rockPositions = rockSet.getRockPositions();
         for(var i = 0; i < rockPositions.length; i+= 3){
-            if(Math.sqrt(Math.pow(this.position[0] - rockPositions[i], 2) + Math.pow(this.position[2] - rockPositions[i+2],2)) < 1.5){
+            if(Math.sqrt(Math.pow(this.position[0] - rockPositions[i], 2) + Math.pow(this.position[2] - rockPositions[i+2],2)) < 1.5){ //Check if rock is close enough to the fish
                 this.hasRock = true;
                 this.rock = rockSet.removeRock(i/3)[0];
                 this.rockPosition = rockSet.removeRockPosition(i);
@@ -83,10 +126,15 @@ export class MyMovingFish extends MyMovingObject {
         }
     }
 
+    /**
+     * @method placeRock
+     * @param nest - Where rocks will be placed
+     * Places a rock in the nest if the distance condition is met
+     */
     placeRock(nest){
         var r = nest.getRadius();
         var coords = nest.getCenterCoords();
-        if(Math.sqrt(Math.pow(this.position[0] - coords[0], 2) + Math.pow(this.position[2] - coords[2],2)) < r){
+        if(Math.sqrt(Math.pow(this.position[0] - coords[0], 2) + Math.pow(this.position[2] - coords[2],2)) < r){ //Check distance between rock and nest
             this.hasRock = false;
             nest.addRock(this.rock);
             nest.addRockSize(this.rockSize);
@@ -94,7 +142,10 @@ export class MyMovingFish extends MyMovingObject {
         }
     }
            
-
+    /**
+     * @method display
+     * Displays the moving fish
+     */
     display(){
         if(this.hasRock){  //If fish is carrying a rock
             this.scene.pushMatrix();
@@ -106,6 +157,5 @@ export class MyMovingFish extends MyMovingObject {
             this.scene.popMatrix();
         }
         super.display();
-
     }  
 }

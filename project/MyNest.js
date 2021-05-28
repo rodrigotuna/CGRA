@@ -17,7 +17,10 @@ export class MyNest extends CGFobject {
 
         this.init();
     }
-
+    /**
+     * @method init
+     * Initializes the useful nest variables
+     */
     init(){
         this.numRocks = 0;
         this.rockArray = [];
@@ -25,29 +28,54 @@ export class MyNest extends CGFobject {
         this.rockSize = [];
     }
 
+    /**
+     * @method addRock 
+     * @param val rock to be added
+     * Adds rock to the nest 
+     */
     addRock(val){
         this.numRocks++;
         this.rockArray.push(val);
     }
 
+    /**
+     * @method addRandomRockPosition
+     * Chooses a random position inside the nest for the rock to be placed in
+     */
     addRandomRockPosition(){
         var r = Math.random() * this.radius;
         var theta = Math.random() * 2 * Math.PI;
         this.rockPosition.push(this.centerCoords[0] + r * Math.sin(theta), this.centerCoords[1], this.centerCoords[2] + r * Math.cos(theta));
     }
-
+    /**
+     * @method addRockSize
+     * @param val rock size
+     * Adds rock size to the nest
+     */
     addRockSize(val){
         this.rockSize.push(val[0], val[1], val[2]);
     }
 
+    /**
+     * @method getRadius
+     * @return Nest's radius
+     */
     getRadius(){
         return this.radius;
     }
 
+    /**
+     * @method getCenterCoords
+     * @return Nest's center coordinates
+     */
     getCenterCoords(){
         return this.centerCoords;
     }
 
+    /**
+     * @method display
+     * Displays the rocks inside the nest
+     */
     display(){
         for(var i = 0; i < this.numRocks; i++){
             this.scene.pushMatrix();

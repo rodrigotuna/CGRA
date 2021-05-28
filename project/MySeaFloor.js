@@ -20,12 +20,18 @@ export class MySeaFloor extends CGFobject{
 
         this.init();
     }
-
+    /**
+     * @method init
+     * Initializes the classes objects and useful parameters
+    */
     init(){
         this.plane = new MyPlane(this.scene, this.nDivs, 0, 1, 0, 1);
     }
     
-
+    /**
+     * @method display
+     * Displays the sea floor
+     */
     display(){
         this.scene.pushMatrix();
         this.scene.rotate(Math.PI/2, -1.0, 0.0, 0.0);

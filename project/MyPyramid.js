@@ -13,6 +13,10 @@ export class MyPyramid extends CGFobject {
         this.stacks = stacks;
         this.initBuffers();
     }
+    /**
+    * @method initBuffers
+    * Initializes the pyramid buffers
+    */    
     initBuffers() {
         this.vertices = [];
         this.indices = [];
@@ -51,6 +55,7 @@ export class MyPyramid extends CGFobject {
             normal[1]/=nsize;
             normal[2]/=nsize;
 
+            //Constructs the stacks of a face
             for(var j = 0; j <= this.stacks; j++){
                 this.vertices.push((1-height)*ca, height, -(1-height)*sa);
                 this.vertices.push((1-height)*caa, height, -(1-height)*saa);

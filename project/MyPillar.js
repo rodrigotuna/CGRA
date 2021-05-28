@@ -16,10 +16,17 @@ export class MyPillar extends CGFobject {
         
         this.init();
     }
+    /**
+     * @method init
+     * Initializes the pillar cylinder
+     */    
     init(){
         this.pillar = new MyCylinder(this.scene,20);
     }
-  
+    /**
+     * @method display
+     * Displays the pillar
+     */
     display(){
         this.scene.pushMatrix();
         this.scene.translate(this.xPos, 0.0, this.zPos);

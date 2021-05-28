@@ -18,11 +18,18 @@ export class MyWaterSurface extends CGFobject{
 
         this.init();
     }
-
+    /**
+     * @method init
+     * Initializes the classes objects
+    */
     init(){
         this.plane = new MyPlane(this.scene, this.nDivs, 0, 1, 0, 1);
     }
 
+    /**
+     * @method display
+     * Displays the water surface
+     */
     display(){
         this.scene.pushMatrix();
         this.scene.translate(0.0, 10.0, 0.0);

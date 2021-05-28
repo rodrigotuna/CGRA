@@ -2,11 +2,11 @@ import {CGFobject, CGFappearance, CGFtexture, CGFshader} from '../lib/CGF.js';
 import {MyRock} from './MyRock.js';
 
 
-  /**MyRockSet
-   * @method constructor
-   * @param scene - Reference to MyScene object
-   * @param numRocks - Number of rocks in a set 
-   */
+/**MyRockSet
+ * @method constructor
+ * @param scene - Reference to MyScene object
+ * @param numRocks - Number of rocks in a set 
+ */
 export class MyRockSet extends CGFobject {
     constructor(scene, numRocks) {
         super(scene);
@@ -16,11 +16,15 @@ export class MyRockSet extends CGFobject {
         this.init();
     }
 
+    /**
+     * @method init
+     * Initializes the classes objects and useful parameters
+    */
     init(){
         this.rockArray = [];
         this.rockPosition = [];
         this.rockSize = [];
-        for(var i = 0; i < this.numRocks; i++){
+        for(var i = 0; i < this.numRocks; i++){ //Creates rocks
             this.rockArray.push(new MyRock(this.scene, 10, 10));
             this.rockPosition.push(50 * Math.random() - 25, 1.0, 50 * Math.random() - 25);
             this.rockSize.push(0.02*Math.random() + 0.10, 0.02*Math.random() + 0.10, 0.02*Math.random() + 0.10);

@@ -16,10 +16,18 @@ export class MyCubeMap extends CGFobject {
 
 	}
 	
+    /**
+     * @method init
+     * Initializes the cube map plane
+     */
 	init() {
         this.quad = new MyQuad(this.scene);
     }
-    
+
+    /**
+     * @method initMaterials
+     * Initializes the default material appearance to set the different textures 
+     */
     initMaterials() {
         this.material = new CGFappearance(this.scene);
         this.material.setAmbient(0.0, 0.0, 0.0, 0.0);
@@ -29,12 +37,16 @@ export class MyCubeMap extends CGFobject {
         this.material.setShininess(10.0);
         this.material.setTextureWrap('REPEAT', 'REPEAT');
     }
-
+    /**
+     * @method display
+     * Displays the different cubemap faces
+     */
     display(){
         this.scene.pushMatrix();
         this.scene.translate(this.scene.camera.position[0], this.scene.camera.position[1], this.scene.camera.position[2]);
         this.scene.scale(50,50,50);
 
+        //Cubemap top face (+y)
         this.material.setTexture(this.textureList[0]);
         this.material.apply();
         this.scene.pushMatrix();
@@ -43,6 +55,7 @@ export class MyCubeMap extends CGFobject {
         this.quad.display();
         this.scene.popMatrix();
 
+        //Cubemap bottom face (-y)
         this.material.setTexture(this.textureList[1]);
         this.material.apply();
         this.scene.pushMatrix();
@@ -51,6 +64,7 @@ export class MyCubeMap extends CGFobject {
         this.quad.display();
         this.scene.popMatrix();
 
+        //Cubemap front face (+z)
         this.material.setTexture(this.textureList[2]);
         this.material.apply();
         this.scene.pushMatrix();
@@ -58,7 +72,8 @@ export class MyCubeMap extends CGFobject {
         this.scene.rotate(-Math.PI,0,1,0);
         this.quad.display();
         this.scene.popMatrix();
-    
+
+        //Cubemap back face (-z)
         this.material.setTexture(this.textureList[3]);
         this.material.apply();
         this.scene.pushMatrix();
@@ -66,6 +81,7 @@ export class MyCubeMap extends CGFobject {
         this.quad.display();
         this.scene.popMatrix();
 
+        //Cubemap right face (+x)
         this.material.setTexture(this.textureList[4]);
         this.material.apply();
         this.scene.pushMatrix();
@@ -74,6 +90,7 @@ export class MyCubeMap extends CGFobject {
         this.quad.display();
         this.scene.popMatrix();
 
+        //Cubemap left face (-x)
         this.material.setTexture(this.textureList[5]);
         this.material.apply();
         this.scene.pushMatrix();

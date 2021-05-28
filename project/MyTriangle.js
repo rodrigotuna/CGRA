@@ -9,7 +9,10 @@ export class MyTriangle extends CGFobject {
 		super(scene);
 		this.initBuffers();
 	}
-	
+    /**
+    * @method initBuffers
+    * Initializes the triangle buffers
+    */    	
 	initBuffers() {
 		this.vertices = [
 			0, 2, 0,	//0

@@ -24,6 +24,10 @@ export class MyPlane extends CGFobject {
 		this.w = (this.maxT - this.minT) / this.nrDivs;
 		this.initBuffers();
 	}
+    /**
+    * @method initBuffers
+    * Initializes the plane buffers
+    */    
 	initBuffers() {
 		// Generate vertices, normals, and texCoords
 		this.vertices = [];

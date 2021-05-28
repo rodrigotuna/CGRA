@@ -11,6 +11,11 @@ export class MyCylinder extends CGFobject {
         this.slices = slices;
         this.initBuffers();
     }
+    
+    /**
+    * @method initBuffers
+    * Initializes the cylinder buffers
+    */    
     initBuffers() {
         this.vertices = [];
         this.indices = [];
@@ -24,10 +29,13 @@ export class MyCylinder extends CGFobject {
         var sInc = 1/this.slices;
 
         for(var i = 0; i <= this.slices; i++){
-            this.vertices.push(Math.cos(ang), 0, -Math.sin(ang));
-            this.vertices.push(Math.cos(ang), 1, -Math.sin(ang));
-            this.normals.push(Math.cos(ang), 0 , -Math.sin(ang));
-            this.normals.push(Math.cos(ang), 0 , -Math.sin(ang));
+            var x = Math.cos(ang);
+            var z = -Math.sin(ang);
+
+            this.vertices.push(x, 0, z);
+            this.vertices.push(x, 1, z);
+            this.normals.push(x, 0 , z);
+            this.normals.push(x, 0 , z);
             this.texCoords.push(s,1);
             this.texCoords.push(s,0);
             if(i > 0){

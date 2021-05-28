@@ -22,30 +22,56 @@ export class MyMovingObject extends CGFobject {
         this.lastT = 0;
         
 	}
-
+    /**
+     * @method update
+     * @param t Time 
+     * Updates the object horizontal position
+     */
     update(t){
         this.position[0] -= this.velocity * Math.cos(this.angle) * (t-this.lastT)/1000;
         this.position[2] += this.velocity * Math.sin(this.angle) * (t-this.lastT)/1000;
     }
-
+    /**
+     * @method updateTime
+     * @param t Time
+     * Sets the last stored time
+     */
     updateTime(t) {
         this.lastT = t;
     }
 
+    /**
+     * @method turn
+     * @param val Angle in radians
+     * Turns object
+     */   
     turn(val){
         this.angle += val;
     }
 
+    /**
+     * @method accelerate
+     * @param val Speed delta
+     * 
+     */
     accelerate(val){
         this.velocity += val;
     }
-
+    
+    /**
+     * @method reset
+     * Resets the object velocity, angle and position to their initial values
+     */
     reset(){
         this.velocity = this.originalVelocity;
         this.angle = this.originalAngle;
         this.position = this.originalPosition.slice();
     }
 
+    /**
+     * @method display
+     * Displays the moving object
+     */
     display(){
         this.scene.pushMatrix();
         

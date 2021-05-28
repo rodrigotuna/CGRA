@@ -4,7 +4,7 @@ import {CGFobject} from '../lib/CGF.js';
    * @method constructor
    * @param   scene - Reference to MyScene object
    * @param  slices - number of slices around Y axis
-   * @param  stacks - number of stacks along Y axis, from the center to the poles (half of sphere)
+   * @param  stacks - number of stacks along Y axis, from the center to the poles (half of rock)
    */
 export class MyRock extends CGFobject {
   constructor(scene, slices, stacks) {
@@ -17,7 +17,7 @@ export class MyRock extends CGFobject {
 
   /**
    * @method initBuffers
-   * Initializes the sphere buffers
+   * Initializes the rock buffers
    */
   initBuffers() {
     this.vertices = [];
@@ -69,8 +69,8 @@ export class MyRock extends CGFobject {
 
         //--- Normals
         // at each vertex, the direction of the normal is equal to 
-        // the vector from the center of the sphere to the vertex.
-        // in a sphere of radius equal to one, the vector length is one.
+        // the vector from the center of the rock to the vertex.
+        // in a rock of radius equal to one, the vector length is one.
         // therefore, the value of the normal is equal to the position vectro
         this.normals.push(x, y, z);
         theta += thetaInc;

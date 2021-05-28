@@ -6,6 +6,7 @@ import { MySeaWeed } from './MySeaWeed.js';
 * @constructor
  * @param scene - Reference to MyScene object
  * @param numSeaWeeds - Number of seaweed sets in the scene
+ * @param seaweedShader - Shader applied to each seaweed
 */
 export class MySeaWeedSet extends CGFobject {
     constructor(scene, numSeaWeeds, seaweedShader) {
@@ -16,19 +17,21 @@ export class MySeaWeedSet extends CGFobject {
 
         this.init();
     }
-
+    /**
+     * @method init
+     * Initializes the classes objects and useful parameters
+    */
     init(){
         this.seaWeedArray = [];
         for(var i = 0; i < this.numSeaWeeds; i++){
             this.seaWeedArray.push(new MySeaWeed(this.scene, 50 * Math.random() - 25, 50 * Math.random() - 25, Math.floor( 4* Math.random()) + 3, this.seaweedShader ));
         }
     }
-
-    updateAnimation(t){
-        this.timeFactor = t;
-        this.seaweedShader.setUniformsValues({ timeFactor: this.timeFactor / 100 % 100});
-    }
     
+    /**
+     * @method display
+     * Displays the set of seaweeds
+     */
     display(){
         for(var i = 0; i < this.numSeaWeeds; i++){
             this.seaWeedArray[i].display();

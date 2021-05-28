@@ -20,6 +20,11 @@ export class MyScene extends CGFscene {
     constructor() {
         super();
     }
+
+    /**
+     * @method init
+     * Initializes the scene and all it's objects
+    */    
     init(application) {
         super.init(application);
         this.initCameras();
@@ -37,27 +42,37 @@ export class MyScene extends CGFscene {
         
         this.enableTextures(true);
 
+        //Initialize scene objects
         this.initTextures();
         this.initAppearances();
         this.initShaders();
         this.initObjects();
 
-        //Initialize scene objects
-
         //Objects connected to MyInterface
         this.displayAxis = false;
     }
+
+    /**
+     * @method initLights
+     * Initializes the scene lights
+     */
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
         this.lights[0].enable();
         this.lights[0].update();
     }
-
+    /**
+     * @method initCameras
+     * Initializes the scene camera
+     */
     initCameras() {
         this.camera = new CGFcamera2(1.7, 0.1, 500, vec3.fromValues(2, 2, 2), vec3.fromValues(0, 2, 0));
     }
-
+    /**
+     * @method initAppearances
+     * Initializes the scene apperances
+     */
     initAppearances(){
         this.rockAppearance = new CGFappearance(this);
         this.rockAppearance.setAmbient(0.41, 0.43, 0.55, 0.3);
@@ -80,6 +95,10 @@ export class MyScene extends CGFscene {
 
     }
 
+    /**
+     * @method initTextures
+     * Initializes the scene textures
+     */
     initTextures(){
         this.cubeTopTexture = new CGFtexture(this, 'images/underwater_cubemap/top.jpg');
         this.cubeBotTexture = new CGFtexture(this, 'images/underwater_cubemap/bottom.jpg');
@@ -99,6 +118,10 @@ export class MyScene extends CGFscene {
         this.surfaceMapTexture = new CGFtexture(this, "images/distortionmap.png");
     }
 
+    /**
+     * @method initShaders
+     * Initializes the scene shaders
+     */
     initShaders(){
         this.sandShader = new CGFshader(this.gl, "shaders/sand.vert", "shaders/sand.frag");
         this.sandShader.setUniformsValues({ uSampler2: 1 });
@@ -110,6 +133,10 @@ export class MyScene extends CGFscene {
         this.surfaceShader.setUniformsValues({ uSampler2: 1 });
     }
 
+    /**
+     * @method initObjects
+     * Initializes the scene objects
+     */
     initObjects(){
         this.axis = new CGFaxis(this);
         this.cubeMap = new MyCubeMap(this, this.waterTexture);
@@ -124,6 +151,10 @@ export class MyScene extends CGFscene {
         this.nest = new MyNest(this, 2.0, [14.1, -0.5, 4.3]);
     }
     
+    /**
+     * @method setDefaultAppearance
+     * Sets the scene default appearance
+     */
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
         this.setDiffuse(0.2, 0.4, 0.8, 1.0);
@@ -132,6 +163,10 @@ export class MyScene extends CGFscene {
         this.setShininess(10.0);
     }
 
+    /**
+     * @method checkKeys
+     * Checks if certain keys are pressed and acts accordingly
+     */
     checkKeys()  {
         var text="Keys pressed: ";
         var keysPressed=false;
@@ -194,7 +229,12 @@ export class MyScene extends CGFscene {
 
     }
 
-    // called periodically (as per setUpdatePeriod() in init())
+    /**
+     * @method update
+     * @param t Time
+     * Updates the scenes animated components (fish, surface and seaweeds)
+     * Called periodically (as per setUpdatePeriod() in init())
+     */
     update(t){
         this.checkKeys();
         this.movingFish.update(t);
@@ -202,9 +242,13 @@ export class MyScene extends CGFscene {
         this.fish.updateAnimation(t);
 
         this.surfaceShader.setUniformsValues({ timeFactor: t / 100 % 100});
-        this.seaWeedSet.updateAnimation(t);
+        this.seaweedShader.setUniformsValues({ timeFactor: t / 100 % 100});
     }
 
+    /**
+     * @param display
+     * Displays the scene components
+     */
     display() {
         // ---- BEGIN Background, camera and axis setup
         // Clear image and depth buffer everytime we update the scene
@@ -220,26 +264,32 @@ export class MyScene extends CGFscene {
         if (this.displayAxis)
             this.axis.display();
 
+        // CubeMap
         this.cubeMap.display();
 
+        // Pillar
         this.pillarAppearance.apply();
         this.pillarSet.display();
 
+        // RockSet
         this.rockAppearance.apply();
         this.rockSet.display();
         this.nest.display();
         this.movingFish.display();
 
+        // SeaFloor
         this.sandAppearance.apply();
         this.setActiveShader(this.sandShader);
         this.sandMapTexture.bind(1);
         this.seaFloor.display();
 
+        // Surface
         this.surfaceAppearance.apply();
         this.setActiveShader(this.surfaceShader);
         this.surfaceMapTexture.bind(1);
         this.waterSurface.display();
         
+        // SeaweedSet
         this.setActiveShader(this.seaweedShader);
         this.seaWeedSet.display();
 

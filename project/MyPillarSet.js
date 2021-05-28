@@ -12,6 +12,10 @@ export class MyPillarSet extends CGFobject {
         this.init();
     }
 
+    /**
+     * @method init
+     * Initializes the pillar set useful variables
+     */    
     init(){
         this.pillarArray = [
             new MyPillar(this.scene, 3.0, 0.0),
@@ -22,6 +26,10 @@ export class MyPillarSet extends CGFobject {
 
     }
 
+    /**
+     * @method display
+     * Displays the set of pillars
+     */
     display(){
         for(var i = 0; i < 4; i++){
           this.pillarArray[i].display();

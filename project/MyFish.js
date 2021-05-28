@@ -14,6 +14,10 @@ export class MyFish extends CGFobject {
         this.initMaterials();
     }
 
+    /**
+     * @method init
+     * Initializes the fish shapes and useful variables
+    */
     init(){
         this.triangle = new MyTriangle(this.scene);
         this.sphere = new MySphere(this.scene,20,20);
@@ -22,17 +26,26 @@ export class MyFish extends CGFobject {
 
         this.tailSpeed = 1;
 
-        this.rightFinMoving = true;
-        this.leftFinMoving = true;
+        this.rightFinMoving = true; //Flag that activates/deactivates the right fin animation
+        this.leftFinMoving = true; //Flag that activates/deactivates the left fin animation
 
         this.tailTilting = 0;
     }
 
+    /**
+     * @method updateAnimation
+     * @param t Time
+     * Updates the fish tail and fin animation
+     */
     updateAnimation(t){
         this.tailAngle = Math.PI/9 * Math.sin(0.01*t*this.tailSpeed);
         this.finAngle = Math.PI/9 * Math.sin(0.005*t);
     }
 
+    /**
+     * @method initMaterials
+     * Initializes the different fish materials, textures and shader
+     */
     initMaterials(){
         this.fishAppearance = new CGFappearance(this.scene);
         this.fishAppearance.setAmbient(0.89, 0.45, 0.36, 0.3);
@@ -59,30 +72,50 @@ export class MyFish extends CGFobject {
         this.fishShader = new CGFshader(this.scene.gl, "shaders/fish.vert", "shaders/fish.frag");
     }
 
+    /**
+     * @method startRightMovement 
+     * Updates the right movement variables to start the correspondent fin and tail animations
+     */
     startRightMovement(){
         this.rightFinMoving = false;
         this.tailTilting = 1;
     }
-
+    /**
+     * @method startLeftMovement 
+     * Updates the left movement variables to start the correspondent fin and tail animations
+     */
     startLeftMovement() {
         this.leftFinMoving = false;
         this.tailTilting = -1;
     }
-
+    /**
+     * @method stopRightMovement 
+     * Updates the right movement variables to stop the correspondent fin and tail animations
+     */
     stopRightMovement(){
         this.rightFinMoving = true;
         this.tailTilting = 0;
     }
-
+    /**
+     * @method stopLeftMovement 
+     * Updates the right movement variables to stop the correspondent fin and tail animations
+     */
     stopLeftMovement() {
         this.leftFinMoving = true;
         this.tailTilting = 0;
     }
-
+    /**
+     * @method updateTailSpeed
+     * @param val Speed Delta
+     * Updates the tail speed animation according to the fish overall speed
+     */
     updateTailSpeed(val){
         this.tailSpeed = val > 0 ? val : 1;
     }
-
+    /**
+     * @method display
+     * Displays all the fish components
+     */
     display(){
         this.fishAppearance.apply();
         //Fish Tail
