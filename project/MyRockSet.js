@@ -14,7 +14,6 @@ export class MyRockSet extends CGFobject {
         this.numRocks = numRocks;
 
         this.init();
-        this.initMaterials();
     }
 
     init(){
@@ -26,13 +25,6 @@ export class MyRockSet extends CGFobject {
             this.rockPosition.push(50 * Math.random() - 25, 1.0, 50 * Math.random() - 25);
             this.rockSize.push(0.02*Math.random() + 0.10, 0.02*Math.random() + 0.10, 0.02*Math.random() + 0.10);
         }
-    }
-    initMaterials(){
-        this.rockAppearance = new CGFappearance(this.scene);
-        this.rockAppearance.setAmbient(0.41, 0.43, 0.55, 0.3);
-        this.rockAppearance.setDiffuse(0.41, 0.43, 0.55, 1.0);
-        this.rockAppearance.setSpecular(0.41, 0.43, 0.55, 0.8);
-        this.rockAppearance.setShininess(15.0);
     }
 
     getRockPositions(){
@@ -70,8 +62,6 @@ export class MyRockSet extends CGFobject {
     }
 
     display(){
-        this.rockAppearance.apply();
-
         for(var i = 0; i < this.numRocks; i++){
             this.scene.pushMatrix();
             this.scene.translate(this.rockPosition[3*i], this.rockPosition[3*i + 1], this.rockPosition[3*i + 2]);

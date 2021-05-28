@@ -56,7 +56,4 @@ export class MyInterface extends CGFinterface {
     }
     
 
-
-
-
 }

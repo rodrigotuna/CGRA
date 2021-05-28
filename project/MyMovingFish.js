@@ -96,11 +96,7 @@ export class MyMovingFish extends MyMovingObject {
            
 
     display(){
-        super.display();
-        if(this.hasRock){
-
-            this.rockAppearence.apply();
-
+        if(this.hasRock){  //If fish is carrying a rock
             this.scene.pushMatrix();
             this.scene.translate(this.position[0], this.position[1], this.position[2])
             this.scene.rotate(this.angle, 0.0, 1.0, 0.0);
@@ -109,6 +105,7 @@ export class MyMovingFish extends MyMovingObject {
             this.rock.display();
             this.scene.popMatrix();
         }
+        super.display();
 
     }  
 }

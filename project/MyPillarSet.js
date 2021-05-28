@@ -10,7 +10,6 @@ export class MyPillarSet extends CGFobject {
         super(scene);
 
         this.init();
-        this.initMaterials();
     }
 
     init(){
@@ -21,13 +20,6 @@ export class MyPillarSet extends CGFobject {
             new MyPillar(this.scene, 20.0, -3.5),
         ]
 
-    }
-    initMaterials(){
-        this.pillarAppearance = new CGFappearance(this.scene);
-
-        this.pillarTexture = new CGFtexture(this.scene, "images/woodtexture.jpg");
-        this.pillarAppearance.setTexture(this.pillarTexture);
-        this.pillarAppearance.setTextureWrap('REPEAT', 'REPEAT');
     }
 
     display(){

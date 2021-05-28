@@ -7,19 +7,21 @@ import {MyPyramid} from './MyPyramid.js';
  * @param xPos - X coordinate
  * @param zPos - Z coordinate
  * @param size - Number of leaves in each seaweed
+ * @param seaweedShader - shader applied to the seaweed
 */
 export class MySeaWeed extends CGFobject {
-    constructor(scene, xPos, zPos, size) {
+    constructor(scene, xPos, zPos, size, seaweedShader) {
         super(scene);
         
         this.xPos = xPos;
         this.zPos = zPos;
         this.size = size;
+        this.seaweedShader = seaweedShader;
+        this.randomFactor = 0.7*Math.random() + 0.7;
         
         this.init();
-        this.initMaterials();
-
     }
+
     init(){
         this.seaweed = new MyPyramid(this.scene, 4, 20);
         this.heights = [];
@@ -27,23 +29,11 @@ export class MySeaWeed extends CGFobject {
             this.heights.push(Math.random()*0.7 + 0.8);
         }
     }
-    initMaterials(){
-        this.seaweedShader = new CGFshader(this.scene.gl, "shaders/seaweed.vert", "shaders/seaweed.frag");
-        this.seaweedShader.setUniformsValues({ randFactor: 0.7*Math.random() + 0.7});
-    }
-
-    updateAnimation(t){
-        this.timeFactor = t;
-        this.seaweedShader.setUniformsValues({ timeFactor: this.timeFactor / 100 % 100});
-    }
-
 
     display(){
-        this.scene.setActiveShader(this.seaweedShader);
-        
+        this.seaweedShader.setUniformsValues({ randFactor: this.randomFactor});
         var angle = 0;
         var inc = 2*Math.PI/this.size;
-
 
         for(var i = 0; i < this.size; i++){
             this.scene.pushMatrix();
@@ -54,8 +44,6 @@ export class MySeaWeed extends CGFobject {
             this.scene.popMatrix();
             angle += inc;
         }
-
-        this.scene.setActiveShader(this.scene.defaultShader);
     
     }
 }
