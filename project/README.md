@@ -9,7 +9,7 @@
 
 ## Observations
 
-All the proposed mandatory elements were accomplished with success. The extra functionalities we decided to implement were the randomized and animated seaweeds and the improved fish gouraud shader. 
+All the proposed mandatory elements were accomplished with success. The extra functionalities we decided to implement were the randomized (7.1) and animated seaweeds (7.2) and the improved fish gouraud shader (7.6). 
 ## Screenshots
 
 ### 1 - MyFish
