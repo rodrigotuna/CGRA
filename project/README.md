@@ -7,6 +7,9 @@
 | Rodrigo Tuna     | 201904967 |up201904967@fe.up.pt|
 ----
 
+## Observations
+
+All the proposed mandatory elements were accomplished with success. The extra functionalities we decided to implement were the randomized and animated seaweeds and the improved fish gouraud shader. 
 ## Screenshots
 
 ### 1 - MyFish
@@ -36,7 +39,7 @@
 ![Screenshot 9](project/screenshots/proj-t3g02-7a.png)
 ![Screenshot 10](project/screenshots/proj-t3g02-7b.png)
 
-### 8 - Extra
+### 8 - Extra Features
 ![Screenshot 11](project/screenshots/proj-t3g02-8a.png)
 ![Alt Text](https://media.giphy.com/media/ZdILzwx5tSooeBWUok/giphy.gif)
 ![Screenshot 12](project/screenshots/proj-t3g02-8b.png)
